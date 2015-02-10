@@ -1,0 +1,35 @@
+<h1>Listing personal_events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Event name</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @personal_events.each do |personal_event| %>
+      <tr>
+        <td><%= personal_event.user %></td>
+        <td><%= personal_event.event_name %></td>
+        <td><%= personal_event.description %></td>
+        <td><%= personal_event.location %></td>
+        <td><%= personal_event.start_time %></td>
+        <td><%= personal_event.end_time %></td>
+        <td><%= link_to 'Show', personal_event %></td>
+        <td><%= link_to 'Edit', edit_personal_event_path(personal_event) %></td>
+        <td><%= link_to 'Destroy', personal_event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Personal event', new_personal_event_path %>

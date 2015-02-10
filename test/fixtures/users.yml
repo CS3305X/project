@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user_type_id: 
   user_id: 1
-  user_type: 1
   first_name: MyString
   last_name: MyString
   email: MyString
@@ -11,8 +11,8 @@ one:
   activated: false
 
 two:
+  user_type_id: 
   user_id: 1
-  user_type: 1
   first_name: MyString
   last_name: MyString
   email: MyString

@@ -1,0 +1,35 @@
+<h1>Listing class_schedules</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subjects</th>
+      <th>Module code</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Location</th>
+      <th>Cancelled</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @class_schedules.each do |class_schedule| %>
+      <tr>
+        <td><%= class_schedule.subjects %></td>
+        <td><%= class_schedule.module_code %></td>
+        <td><%= class_schedule.start_time %></td>
+        <td><%= class_schedule.end_time %></td>
+        <td><%= class_schedule.location %></td>
+        <td><%= class_schedule.cancelled %></td>
+        <td><%= link_to 'Show', class_schedule %></td>
+        <td><%= link_to 'Edit', edit_class_schedule_path(class_schedule) %></td>
+        <td><%= link_to 'Destroy', class_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Class schedule', new_class_schedule_path %>

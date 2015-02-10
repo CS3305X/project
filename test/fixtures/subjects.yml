@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user: 
   module_code: MyString
   description: MyString
   lecturer_id: 1
 
 two:
+  user: 
   module_code: MyString
   description: MyString
   lecturer_id: 1

@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210113832) do
+ActiveRecord::Schema.define(version: 20150210215219) do
 
-  create_table "attendings", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "meeting_id"
-    t.boolean  "confirmed"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "RegisteredFor", id: false, force: true do |t|
+    t.integer "users_id"
+    t.integer "subjects_id"
   end
 
+  add_index "RegisteredFor", ["subjects_id"], name: "index_RegisteredFor_on_subjects_id", using: :btree
+  add_index "RegisteredFor", ["users_id"], name: "index_RegisteredFor_on_users_id", using: :btree
+
   create_table "class_schedules", force: true do |t|
+    t.integer  "subjects_id"
     t.string   "module_code"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -31,6 +32,8 @@ ActiveRecord::Schema.define(version: 20150210113832) do
     t.datetime "updated_at"
   end
 
+  add_index "class_schedules", ["subjects_id"], name: "index_class_schedules_on_subjects_id", using: :btree
+
   create_table "courses", force: true do |t|
     t.string   "course_id"
     t.string   "course_name"
@@ -39,7 +42,6 @@ ActiveRecord::Schema.define(version: 20150210113832) do
   end
 
   create_table "meetings", force: true do |t|
-    t.integer  "meeting_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string   "description"
@@ -50,22 +52,7 @@ ActiveRecord::Schema.define(version: 20150210113832) do
     t.datetime "updated_at"
   end
 
-  create_table "member_ofs", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "offered_tos", force: true do |t|
-    t.string   "module_code"
-    t.string   "course_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "personal_events", force: true do |t|
-    t.integer  "event_id"
     t.integer  "user_id"
     t.string   "event_name"
     t.string   "description"
@@ -76,12 +63,7 @@ ActiveRecord::Schema.define(version: 20150210113832) do
     t.datetime "updated_at"
   end
 
-  create_table "registered_fors", force: true do |t|
-    t.integer  "user_id"
-    t.string   "module_code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "personal_events", ["user_id"], name: "index_personal_events_on_user_id", using: :btree
 
   create_table "subjects", force: true do |t|
     t.string   "module_code"
@@ -92,7 +74,6 @@ ActiveRecord::Schema.define(version: 20150210113832) do
   end
 
   create_table "user_groups", force: true do |t|
-    t.integer  "group_id"
     t.string   "group_name"
     t.string   "description"
     t.integer  "admin_id"
@@ -100,22 +81,24 @@ ActiveRecord::Schema.define(version: 20150210113832) do
     t.datetime "updated_at"
   end
 
-  create_table "user_types", force: true do |t|
-    t.integer  "type_id"
-    t.string   "type_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
+    t.integer  "user_type_id"
     t.integer  "user_id"
-    t.integer  "user_type"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
     t.string   "phone_num"
     t.string   "password_digest"
     t.boolean  "activated"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["user_type_id"], name: "index_users_on_user_type_id", using: :btree
+
+  create_table "usertypes", force: true do |t|
+    t.integer  "type_id"
+    t.string   "type_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

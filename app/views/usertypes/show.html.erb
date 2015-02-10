@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @usertype.type_id %>
+</p>
+
+<p>
+  <strong>Type name#:</strong>
+  <%= @usertype.type_name# %>
+</p>
+
+<%= link_to 'Edit', edit_usertype_path(@usertype) %> |
+<%= link_to 'Back', usertypes_path %>

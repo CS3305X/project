@@ -1,0 +1,27 @@
+<h1>Listing usertypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Type name#</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @usertypes.each do |usertype| %>
+      <tr>
+        <td><%= usertype.type_id %></td>
+        <td><%= usertype.type_name# %></td>
+        <td><%= link_to 'Show', usertype %></td>
+        <td><%= link_to 'Edit', edit_usertype_path(usertype) %></td>
+        <td><%= link_to 'Destroy', usertype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Usertype', new_usertype_path %>
