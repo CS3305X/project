@@ -11,101 +11,113 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150210113832) do
 
-  create_table "UserType", primary_key: "type_id", force: true do |t|
-    t.string "type_name", limit: 15
-  end
-  
- create_table "User", primary_key: "user_id", force: true do |t|
-    t.integer "user_type"
-    t.string  "first_name",      limit: 30
-    t.string  "last_name",       limit: 30
-    t.string  "email",           limit: 60
-    t.string  "phone_num",       limit: 30
-    t.string  "password_digest", limit: 500
-    t.boolean "activated",                   default: false
-  end
-
-  add_index "User", ["user_type"], name: "user_type", using: :btree
-  
-  create_table "PersonalEvent", primary_key: "event_id", force: true do |t|
+  create_table "attendings", force: true do |t|
     t.integer  "user_id"
-    t.string   "event_name",  limit: 50
-    t.string   "description", limit: 500
-    t.string   "location",    limit: 100
+    t.integer  "meeting_id"
+    t.boolean  "confirmed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "class_schedules", force: true do |t|
+    t.string   "module_code"
     t.datetime "start_time"
     t.datetime "end_time"
+    t.string   "location"
+    t.boolean  "cancelled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "PersonalEvent", ["user_id"], name: "user_id", using: :btree
-  
-  create_table "Module", primary_key: "module_code", force: true do |t|
-    t.string  "description", limit: 200
-    t.integer "lecturer_id"
+  create_table "courses", force: true do |t|
+    t.string   "course_id"
+    t.string   "course_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "Module", ["lecturer_id"], name: "lecturer_id", using: :btree
-  
-  create_table "RegisteredFor", id: false, force: true do |t|
-    t.integer "user_id",                default: 0,  null: false
-    t.string  "module_code", limit: 10, default: "", null: false
-  end
-  
-  create_table "ClassSchedule", id: false, force: true do |t|
-    t.string   "module_code", limit: 10,  default: "",    null: false
-    t.datetime "start_time",                              null: false
-    t.datetime "end_time"
-    t.string   "location",    limit: 100
-    t.boolean  "cancelled",               default: false
-  end
-  
-  create_table "Course", primary_key: "course_id", force: true do |t|
-    t.string "course_name", limit: 100
-  end
-  
-  
-  create_table "OfferedTo", id: false, force: true do |t|
-    t.string "module_code", limit: 10, default: "", null: false
-    t.string "course_id",   limit: 10, default: "", null: false
-  end
-
-  add_index "OfferedTo", ["course_id"], name: "course_id", using: :btree
-  
-  create_table "Meeting", primary_key: "meeting_id", force: true do |t|
+  create_table "meetings", force: true do |t|
+    t.integer  "meeting_id"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.string   "description",      limit: 100
-    t.string   "location",         limit: 100
+    t.string   "description"
+    t.string   "location"
     t.integer  "organiser_id"
-    t.boolean  "confirmed_by_all",             default: false
+    t.boolean  "confirmed_by_all"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "Meeting", ["organiser_id"], name: "organiser_id", using: :btree
-  
-  create_table "Attending", id: false, force: true do |t|
-    t.integer "user_id",    default: 0,     null: false
-    t.integer "meeting_id", default: 0,     null: false
-    t.boolean "confirmed",  default: false
+  create_table "member_ofs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "Attending", ["meeting_id"], name: "meeting_id", using: :btree
-
-  create_table "UserGroup", primary_key: "group_id", force: true do |t|
-    t.string  "group_name",  limit: 100
-    t.string  "description", limit: 500
-    t.integer "admin"
+  create_table "offered_tos", force: true do |t|
+    t.string   "module_code"
+    t.string   "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "UserGroup", ["admin"], name: "admin", using: :btree
-
-  create_table "MemberOf", id: false, force: true do |t|
-    t.integer "user_id",  default: 0, null: false
-    t.integer "group_id", default: 0, null: false
+  create_table "personal_events", force: true do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.string   "event_name"
+    t.string   "description"
+    t.string   "location"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "MemberOf", ["group_id"], name: "group_id", using: :btree
+  create_table "registered_fors", force: true do |t|
+    t.integer  "user_id"
+    t.string   "module_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
+  create_table "subjects", force: true do |t|
+    t.string   "module_code"
+    t.string   "description"
+    t.integer  "lecturer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
+  create_table "user_groups", force: true do |t|
+    t.integer  "group_id"
+    t.string   "group_name"
+    t.string   "description"
+    t.integer  "admin_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_types", force: true do |t|
+    t.integer  "type_id"
+    t.string   "type_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "user_type"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_num"
+    t.string   "password_digest"
+    t.boolean  "activated"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

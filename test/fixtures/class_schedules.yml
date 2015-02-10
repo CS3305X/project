@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  module_code: MyString
+  start_time: 2015-02-10 11:22:31
+  end_time: 2015-02-10 11:22:31
+  location: MyString
+  cancelled: false
+
+two:
+  module_code: MyString
+  start_time: 2015-02-10 11:22:31
+  end_time: 2015-02-10 11:22:31
+  location: MyString
+  cancelled: false
