@@ -1,24 +1,7 @@
-  _______                     __  ___  
- |__   __|                   /_ |/ _ \ 
-    | | ___  __ _ _ __ ___    | | | | |
-    | |/ _ \/ _` | '_ ` _ \   | | | | |
-    | |  __/ (_| | | | | | |  | | |_| |
-    |_|\___|\__,_|_| |_| |_|  |_|\___/ 
-                                       
-  
+CS3305 Team Project
 
-Welcome to your Rails project on Cloud9 IDE!
+## To test login:
 
-To get started, just do the following:
-
-1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://cs3305-conorod-1.c9.io/).
-
-Happy coding!
-The Cloud9 IDE team
-
-
-## Support & Documentation
-
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+start server in cloud 9 IDE: '''rails server -b $IP -p $PORT'''
+go to [your server address]/login
+use test user: 123456789@umail.ucc.ie | teamprojectx 
