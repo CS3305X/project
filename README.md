@@ -1,5 +1,7 @@
 ## To test login:
 
+[*]Start SQL server with `mysql-ctl start`
+
 [*]start server in cloud 9 IDE: `rails server -b $IP -p $PORT`
 
 [*]go to [your server address]/login
