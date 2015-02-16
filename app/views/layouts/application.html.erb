@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>UCC Timetable</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container-fluid">
+      <div class="row" id="header">
+        <%= render 'layouts/header' %>
+      </div>
+      <div class="row content">
+        <%= yield %>
+      </div>
+      <div class="row" id="footer">
+        <%= render 'layouts/footer' %>
+      </div>
+    </div>
     <!-- Outputs a flash message/warning -->
     <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
@@ -14,5 +25,7 @@
     <!-- -->
 <%= yield %>
 <%= debug(params) if Rails.env.development? %>
+
+
 </body>
 </html>

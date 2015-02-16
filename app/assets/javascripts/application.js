@@ -10,7 +10,15 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require modernizr-latest
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.ui.all
+//= require bootstrap
+//= require moment
+//= require fullcalendar
+//= require gcal
+//= require bootstrap-datetimepicker
+//= require events
 //= require_tree .

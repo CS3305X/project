@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   resources :users
 
   resources :usertypes
+  
+  root 'events#index'
+
+  resources :events, except: :show do
+    get :delete
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

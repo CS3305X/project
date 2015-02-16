@@ -1,0 +1,20 @@
+/*
+ *= require_self
+ *= require jquery.ui.all
+ *= require fullcalendar
+ *= require font-awesome
+ *= require layout
+ *= require modal
+ *= require datetimepicker
+ *= require_tree .
+*/
+
+$body-bg: #272727;
+$text-color: white;
+$btn-default-border: black;
+$btn-default-color: white;
+$btn-default-bg: black;
+$link-hover-color: white;
+
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
