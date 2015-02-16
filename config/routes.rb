@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :usertypes
   
-  root 'events#index'
+  root 'sessions#new'
 
   resources :events, except: :show do
     get :delete
