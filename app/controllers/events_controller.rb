@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @events = Event.where(user_id: 112456672)
+    @events = Event.where(user_id: session[:user_id])
     #@events = Event.all
   end
 
