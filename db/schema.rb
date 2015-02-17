@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216113645) do
-
-  create_table "RegisteredFor", id: false, force: true do |t|
-    t.integer "users_id"
-    t.integer "subjects_id"
-  end
-
-  add_index "RegisteredFor", ["subjects_id"], name: "index_RegisteredFor_on_subjects_id", using: :btree
-  add_index "RegisteredFor", ["users_id"], name: "index_RegisteredFor_on_users_id", using: :btree
+ActiveRecord::Schema.define(version: 20150217154151) do
 
   create_table "class_schedules", force: true do |t|
     t.integer  "subjects_id"
@@ -77,6 +69,11 @@ ActiveRecord::Schema.define(version: 20150216113645) do
   end
 
   add_index "personal_events", ["user_id"], name: "index_personal_events_on_user_id", using: :btree
+
+  create_table "registered_fors", force: true do |t|
+    t.integer "user_id"
+    t.string  "module_code"
+  end
 
   create_table "subjects", force: true do |t|
     t.string   "module_code"

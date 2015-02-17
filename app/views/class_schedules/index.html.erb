@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Subjects</th>
       <th>Module code</th>
       <th>Start time</th>
       <th>End time</th>
@@ -16,7 +15,6 @@
   <tbody>
     <% @class_schedules.each do |class_schedule| %>
       <tr>
-        <td><%= class_schedule.subjects %></td>
         <td><%= class_schedule.module_code %></td>
         <td><%= class_schedule.start_time %></td>
         <td><%= class_schedule.end_time %></td>

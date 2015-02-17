@@ -7,10 +7,5 @@ class CreateSubjects < ActiveRecord::Migration
 
       t.timestamps
     end
-    
-    create_table :RegisteredFor, id: false do |t|
-      t.belongs_to :users, index: true
-      t.belongs_to :subjects, index: true
-    end
   end
 end

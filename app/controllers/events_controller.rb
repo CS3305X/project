@@ -4,7 +4,6 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.where(user_id: session[:user_id])
-    #@events = Event.all
   end
 
   def new
@@ -12,7 +11,11 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.create(event_params)
+    #@event = Event.create(event_params)
+    @event = Event.new(event_params)
+    @event.user_id = session[:user_id]
+    @event.save
+    
   end
 
   def update

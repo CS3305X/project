@@ -1,10 +1,14 @@
 class ClassSchedulesController < ApplicationController
   before_action :set_class_schedule, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js, :json
 
   # GET /class_schedules
   # GET /class_schedules.json
   def index
-    @class_schedules = ClassSchedule.all
+    @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
+                                                  WHERE module_code IN (SELECT module_code
+			                                                                  FROM registered_fors
+			                                                                  WHERE user_id = '?')", session[:user_id]]
   end
 
   # GET /class_schedules/1

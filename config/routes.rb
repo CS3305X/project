@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   resources :courses
 
-  resources :class_schedules
+  #resources :class_schedules
 
   resources :subjects
 
@@ -24,6 +24,10 @@ Rails.application.routes.draw do
   root 'sessions#new'
 
   resources :events, except: :show do
+    get :delete
+  end
+  
+  resources :class_schedules, except: :show do
     get :delete
   end
 
