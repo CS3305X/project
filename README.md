@@ -1,9 +1,14 @@
 ## To Run Application
 [*]Run bundle install
+
 [*]Start the MySQL server using mysql-ctl start
+
 [*]Run rake db:migrate
+
 [*]Run rake db:seed 
+
 [*]Start the rails Server using rails s -b $IP -p $PORT
+
 
 ## To test login:
 
