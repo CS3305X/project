@@ -14,4 +14,6 @@
 
 [*] Start rails server (see above)
 
-[*] go to [your server address]/users/new
+~~[*] go to [your server address]/users/new~~
+
+[*] go to [your server address]/signup

@@ -14,7 +14,6 @@
 ActiveRecord::Schema.define(version: 20150217154151) do
 
   create_table "class_schedules", force: true do |t|
-    t.integer  "subjects_id"
     t.string   "module_code"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -23,8 +22,6 @@ ActiveRecord::Schema.define(version: 20150217154151) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "class_schedules", ["subjects_id"], name: "index_class_schedules_on_subjects_id", using: :btree
 
   create_table "courses", force: true do |t|
     t.string   "course_id"
