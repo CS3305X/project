@@ -9,3 +9,9 @@
 [*]use test user: 123456789@umail.ucc.ie | teamprojectx 
 
 [*]currently directs you to the generated user page.
+
+## To Create New User
+
+[*] Start rails server (see above)
+
+[*] go to [your server address]/users/new
