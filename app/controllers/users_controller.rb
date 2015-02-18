@@ -24,8 +24,17 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-
+    #Create the user from the form submission
+    @user = User.new(id: params[:user][:id], user_type_id: params[:user][:user_type_id],
+                    first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
+                          email: "#{params[:user][:id]}@umail.ucc.ie", phone_num: params[:user][:phone_num], 
+                          password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
+    
+    #Assign the user an email depending on whether they are student or staff
+    if params[:user][:user_type_id] == '2'
+      @user.email = params[:user][:email]
+    end
+    
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -69,6 +78,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:user_type_id, :user_id, :first_name, :last_name, :email, :phone_num, :password_digest, :activated)
+      params.require(:user).permit(:user_type_id, :user_id, :first_name, :last_name, :email, :phone_num, :password, :password_confirmation)
     end
 end
