@@ -40965,3 +40965,397 @@ Processing by EventsController#index as JSON
   Rendered events/index.json.rabl (3.1ms)
 Completed 200 OK in 13ms (Views: 11.7ms | ActiveRecord: 0.5ms)
 >>>>>>> 9f4ef2d63463475550ed8f03948fc2633cbab171
+
+
+Started GET "/" for 143.239.75.193 at 2015-02-19 14:28:07 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+
+SyntaxError (/home/ubuntu/workspace/app/controllers/sessions_controller.rb:11: syntax error, unexpected <<, expecting keyword_end
+<<<<<<< HEAD
+  ^
+/home/ubuntu/workspace/app/controllers/sessions_controller.rb:13: syntax error, unexpected ===, expecting keyword_end
+=======
+   ^
+/home/ubuntu/workspace/app/controllers/sessions_controller.rb:15: syntax error, unexpected >>, expecting keyword_end
+>>>>>>> 9f4ef2d63463475550ed8f03948fc2633cbab171
+  ^):
+  app/controllers/sessions_controller.rb:11: syntax error, unexpected <<, expecting keyword_end
+  app/controllers/sessions_controller.rb:13: syntax error, unexpected ===, expecting keyword_end
+  app/controllers/sessions_controller.rb:15: syntax error, unexpected >>, expecting keyword_end
+
+
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.9ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (13.0ms)
+  Rendered /usr/local/rvm/gems/ruby-2.1.5@rails4/gems/actionpack-4.1.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (61.4ms)
+
+
+Started GET "/" for 143.239.75.193 at 2015-02-19 14:28:37 +0000
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (27.2ms)
+  Rendered layouts/_header.html.haml (1.7ms)
+  Rendered layouts/_footer.html.haml (1.4ms)
+Completed 200 OK in 3563ms (Views: 3562.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.ui.core.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.accordion.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.theme.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.autocomplete.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/application.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.button.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.menu.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.resizable.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.progressbar.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.selectable.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.slider.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.tabs.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.tooltip.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:41 +0000
+
+
+Started GET "/assets/jquery.ui.spinner.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/jquery.ui.base.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/fullcalendar.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/jquery.ui.all.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/font-awesome.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/layout.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/datetimepicker.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/modal.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/jquery.ui.datepicker.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/courses.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/jquery.ui.dialog.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/meetings.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/class_schedules.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/personal_events.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/subjects.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/scaffolds.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:42 +0000
+
+
+Started GET "/assets/user_groups.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/usertypes.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/sessions.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/users.css?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/modernizr-latest.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/turbolinks.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.widget.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.core.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.position.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.menu.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.autocomplete.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.accordion.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.button.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.datepicker.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.mouse.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.draggable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.dialog.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.resizable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.droppable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.effect.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.effect-blind.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:43 +0000
+
+
+Started GET "/assets/jquery.ui.effect-clip.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-bounce.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-fade.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-drop.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-explode.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-fold.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-slide.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-highlight.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-transfer.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-pulsate.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-scale.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.progressbar.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.tooltip.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.effect-shake.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/jquery.ui.all.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/bootstrap/affix.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/bootstrap/button.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:44 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/transition.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/collapse.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/dropdown.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/gcal.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/events.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/class_schedules.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/meetings.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/personal_events.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/subjects.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/user_groups.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/users.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:45 +0000
+
+
+Started GET "/assets/usertypes.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/application.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/jquery.ui.selectable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/sessions.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/jquery.ui.slider.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/jquery.ui.sortable.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/jquery.ui.spinner.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:46 +0000
+
+
+Started GET "/assets/jquery.ui.tabs.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:47 +0000
+
+
+Started GET "/assets/bootstrap/alert.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:47 +0000
+
+
+Started GET "/assets/bootstrap/carousel.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:47 +0000
+
+
+Started GET "/assets/bootstrap/tab.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:47 +0000
+
+
+Started GET "/assets/bootstrap/scrollspy.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:48 +0000
+
+
+Started GET "/assets/bootstrap/modal.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:48 +0000
+
+
+Started GET "/assets/bootstrap/tooltip.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:48 +0000
+
+
+Started GET "/assets/bootstrap/popover.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:49 +0000
+
+
+Started GET "/assets/moment.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:49 +0000
+
+
+Started GET "/assets/fullcalendar.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:49 +0000
+
+
+Started GET "/assets/gcal.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:49 +0000
+
+
+Started GET "/assets/bootstrap-datetimepicker.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:50 +0000
+
+
+Started GET "/assets/events.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:50 +0000
+
+
+Started GET "/assets/class_schedules.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:50 +0000
+
+
+Started GET "/assets/courses.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:50 +0000
+
+
+Started GET "/assets/meetings.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:50 +0000
+
+
+Started GET "/assets/personal_events.js?body=1" for 143.239.75.193 at 2015-02-19 14:28:51 +0000
