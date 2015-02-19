@@ -23,10 +23,10 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name %>
   </div>
-  <div class="field">
+  <!--<div class="field">
     <%= f.label :email %><br>
     <%= f.email_field :email %>
-  </div>
+  </div>-->
   <div class="field">
     <%= f.label :phone_num %><br>
     <%= f.text_field :phone_num %>
@@ -41,7 +41,7 @@
   </div>
   <div class="field">
     <%= f.label :user_type_id %><br>
-    <%= f.radio_button :user_type_id, 1 %>
+    <%= f.radio_button :user_type_id, 1%>
     <%= label :user_type_id_student, 'Student' %>
     <%= f.radio_button :user_type_id, 2 %>
     <%= label :user_type_id_staff, 'Staff' %>
