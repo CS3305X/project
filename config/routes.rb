@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get    'signup'   => 'users#new'
   post   'signup'   => 'users#create'
   #delete 'logout'  => 'sessions#destroy'
+  
+  get 'events' => 'events#index'
 
   resources :user_groups
 
