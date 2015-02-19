@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
   
@@ -7,7 +8,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       #Re-direct to page
       log_in user
+<<<<<<< HEAD
       redirect_to events_url
+=======
+      redirect_to user
+>>>>>>> 9f4ef2d63463475550ed8f03948fc2633cbab171
     else
       #Output an error message. See /test/integration/users_login_test.rb for more
       flash.now[:danger] = "Invalid email/password combination"

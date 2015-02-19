@@ -54,19 +54,6 @@ ActiveRecord::Schema.define(version: 20150217154151) do
     t.datetime "updated_at"
   end
 
-  create_table "personal_events", force: true do |t|
-    t.integer  "user_id"
-    t.string   "event_name"
-    t.string   "description"
-    t.string   "location"
-    t.datetime "start_time"
-    t.datetime "end_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "personal_events", ["user_id"], name: "index_personal_events_on_user_id", using: :btree
-
   create_table "registered_fors", force: true do |t|
     t.integer "user_id"
     t.string  "module_code"

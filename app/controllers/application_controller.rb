@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   #Makes methods available from Applicationcontroller to those that do not inherit it? I think.
   include SessionsHelper
+  
 end
