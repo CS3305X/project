@@ -8,9 +8,8 @@ node(:url)     { |event| edit_event_url(event)      }
 node(:allDay)  { |event| event.all_day              }
 node(:user_id) { |event| event.user_id             }
 
-
 node(:color) do |event|
-  event.start - 3.days < Time.now ? '#920202' : '#00AEEF'
+  '#920202'
 end
 
 node(:update) { |event| event_url(event) }

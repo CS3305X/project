@@ -31,7 +31,7 @@ $(document).on('page:change', function() {
       center: 'title',
       right: 'month,agendaWeek,agendaDay'
     },
-    height: 600,
+    height: 700,
     editable: true,
     resizable: true,
     eventSources: [ '/events', '/class_schedules'
