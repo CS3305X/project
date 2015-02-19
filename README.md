@@ -30,3 +30,6 @@
 
 [*] go to [your server address]/signup
 
+## Git cheatsheet
+
+https://gist.github.com/hofmannsven/6814451
