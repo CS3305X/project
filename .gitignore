@@ -1,2 +1,5 @@
 #Ignore all .c9 specific files<br>
 /.c9/
+
+#Ignore development.log
+/log/development.log
