@@ -1,0 +1,24 @@
+= simple_form_for @meeting, remote: true do |f|
+  = f.input :description, as: :text, input_html: { rows: 4, cols: 30 }
+  = f.input :start_time,  as: :datetimepicker
+  = f.input :end_time, as: :datetimepicker
+
+  .modal-footer
+    %span#hidden-delete{style: 'display:none;'}
+      = link_to @event, remote: true, method: :delete,
+        data: { confirm: 'Are you sure?' }, id: 'destroy' do
+        %button.btn.btn-sm.btn-danger
+          = icon('exclamation')
+          Delete
+    %span.submit-right= f.button :submit, 'Submit'
+
+:coffeescript
+  $ ->
+    $('.datetimepicker10').datetimepicker
+      useCurrent: false
+      useSeconds: false
+      icons:
+        time: 'fa fa-clock-o'
+        date: 'fa fa-calendar'
+        up:   'fa fa-arrow-up'
+        down: 'fa fa-arrow-down'    

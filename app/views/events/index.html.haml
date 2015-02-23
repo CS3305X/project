@@ -7,10 +7,15 @@
     %button.btn.btn-default
       Create Event
 
-
+.col-md-1.col-md-offset-4#create-event
+  = link_to new_meeting_path do
+    %button.btn.btn-default
+      Create Meeting
+      
 .row#event-calendar
   .col-md-10.col-md-offset-1#calendar
 
 .row
   .modal.fade#event-modal(tabindex="-1" aria-labelledby="myModalLabel"
     aria-hidden="true")
+
