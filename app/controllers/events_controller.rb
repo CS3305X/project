@@ -4,7 +4,12 @@ class EventsController < ApplicationController
   respond_to :html, :js, :json
 
   def index
-    @events = Event.where(user_id: session[:user_id])
+    if logged_in?
+      @events = Event.where(current_id)
+    else
+      redirect_to login_url
+      flash[:notice] = 'You need to be logged in to use this feature.'
+    end 
   end
 
   def new
