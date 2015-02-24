@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user %><br>
-    <%= f.text_field :user %>
-  </div>
-  <div class="field">
     <%= f.label :module_code %><br>
     <%= f.text_field :module_code %>
   </div>
@@ -26,6 +22,10 @@
   <div class="field">
     <%= f.label :lecturer_id %><br>
     <%= f.number_field :lecturer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :credits %><br>
+    <%= f.number_field :credits %>
   </div>
   <div class="actions">
     <%= f.submit %>
