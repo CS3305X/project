@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :registered_fors
+
   get 'sessions/new'
   
   get    'login'   => 'sessions#new'
@@ -10,6 +12,8 @@ Rails.application.routes.draw do
   #delete 'logout'  => 'sessions#destroy'
   
   get 'events' => 'events#index'
+  
+  get 'modules' => 'registered_fors#index'
 
   resources :user_groups
 

@@ -28,8 +28,8 @@ class SubjectsController < ApplicationController
 
     respond_to do |format|
       if @subject.save
-        format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
-        format.json { render :show, status: :created, location: @subject }
+        format.html { redirect_to @subject, notice: 'Module was successfully added.' }
+        format.json { render :index, status: :created, location: @subject }
       else
         format.html { render :new }
         format.json { render json: @subject.errors, status: :unprocessable_entity }
@@ -71,4 +71,8 @@ class SubjectsController < ApplicationController
     def subject_params
       params.require(:subject).permit(:user, :module_code, :description, :lecturer_id)
     end
+    
+    def newmodule_params
+      params.require(:modules).permit(:type, :module_code)
+    end 
 end
