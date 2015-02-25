@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @registered_for.user_id
+%p
+  %b Module code:
+  = @registered_for.module_code
+
+= link_to 'Edit', edit_registered_for_path(@registered_for)
+\|
+= link_to 'Back', registered_fors_path

@@ -1,0 +1,27 @@
+<h1>Add a new module</h1>
+<br/>
+
+<table>
+  <thead>
+    <tr>
+      <th>Module code</th>
+      <th>Description</th>
+      <th>Lecturer</th>
+      <th>Credits</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <%= form_for(@registered_fors) do |f| %>
+  <tbody>
+    <% @subjects.each do |subject| %>
+      <tr>
+        <td><%= subject.module_code %></td>
+        <td><%= subject.description %></td>
+        <td><%= subject.lecturer_id %></td>
+        <td><%= subject.credits %></td>
+        <td><!--<% hidden_field(:object, :value => subject.module_code) %>--> <%= f.submit "add module", value: subject.module_code, name: :module_code %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

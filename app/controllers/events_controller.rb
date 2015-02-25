@@ -5,7 +5,11 @@ class EventsController < ApplicationController
 
   def index
     if logged_in?
+<<<<<<< HEAD
       @events = Event.where(user_id: current_id)
+=======
+      @events = Event.where(user_id: session[:user_id])
+>>>>>>> moduleselect
     else
       redirect_to login_url
       flash[:notice] = 'You need to be logged in to use this feature.'

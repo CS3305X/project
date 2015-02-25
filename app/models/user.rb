@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :subjects
   has_many :meetings
   has_many :user_groups
+  has_many :registered_fors
   
   #Ensure the ID only aceptd digits between 0-9
   validates :id, format: { with: /([\d])+/,

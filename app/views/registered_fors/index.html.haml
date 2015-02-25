@@ -1,0 +1,19 @@
+%h1 Listing registered_fors
+
+%table
+  %tr
+    %th User
+    %th Module code
+    %th
+    %th
+    %th
+
+  - @registered_fors.each do |registered_for|
+    %tr
+      %td= registered_for.user_id
+      %td= registered_for.module_code
+      %td= link_to 'Remove', registered_for, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Registered for', new_registered_for_path

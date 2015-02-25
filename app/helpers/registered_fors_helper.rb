@@ -1,0 +1,2 @@
+module RegisteredForsHelper
+end
