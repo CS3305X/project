@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224214252) do
+ActiveRecord::Schema.define(version: 20150225115447) do
 
   create_table "class_schedules", force: true do |t|
     t.string   "module_code"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20150224214252) do
     t.boolean  "activated"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "credits"
   end
 
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id", using: :btree
