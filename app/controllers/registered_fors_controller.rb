@@ -4,7 +4,7 @@ class RegisteredForsController < ApplicationController
   # GET /registered_fors
   # GET /registered_fors.json
   def index
-    @registered_fors = RegisteredFor.where(session[:user_id])
+    @registered_fors = RegisteredFor.where(user_id: session[:user_id])
   end
 
   # GET /registered_fors/1
@@ -16,6 +16,11 @@ class RegisteredForsController < ApplicationController
   def new
     @registered_fors = RegisteredFor.new
     @subjects = Subject.all
+  end
+  
+  #Check to see how many credits a user has before adding more modules (max 60)
+  def checkCredits
+    
   end
 
   # GET /registered_fors/1/edit
