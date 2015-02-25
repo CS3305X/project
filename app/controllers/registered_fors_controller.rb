@@ -39,10 +39,6 @@ class RegisteredForsController < ApplicationController
     end 
   end
 
-  # GET /registered_fors/1/edit
-  def edit
-  end
-
   # POST /registered_fors
   # POST /registered_fors.json
   def create
@@ -68,6 +64,7 @@ class RegisteredForsController < ApplicationController
         format.html { redirect_to @registered_for, notice: 'Registered for was successfully updated.' }
         format.json { render :show, status: :ok, location: @registered_for }
       else
+        flash.now[:danger] = "This module was not added"
         format.html { render :edit }
         format.json { render json: @registered_for.errors, status: :unprocessable_entity }
       end
@@ -77,6 +74,8 @@ class RegisteredForsController < ApplicationController
   # DELETE /registered_fors/1
   # DELETE /registered_fors/1.json
   def destroy
+    #module_code = @registered_for.module_code
+    #credits = Subject
     @registered_for.destroy
     respond_to do |format|
       format.html { redirect_to registered_fors_url, notice: 'Registered for was successfully destroyed.' }
