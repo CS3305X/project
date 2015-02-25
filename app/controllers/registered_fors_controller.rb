@@ -4,7 +4,12 @@ class RegisteredForsController < ApplicationController
   # GET /registered_fors
   # GET /registered_fors.json
   def index
-    @registered_fors = RegisteredFor.where(user_id: session[:user_id])
+    if logged_in?
+      @registered_fors = RegisteredFor.where(user_id: session[:user_id])
+    else
+      redirect_to login_url
+      flash[:notice] = 'You need to be logged in to use this feature.'
+    end 
   end
 
   # GET /registered_fors/1
@@ -19,8 +24,19 @@ class RegisteredForsController < ApplicationController
   end
   
   #Check to see how many credits a user has before adding more modules (max 60)
-  def checkCredits
-    
+  def checkCredits(newModule)
+    newCredits = Subject.find_by(module_code: newModule)
+    newCredits = newCredits.credits
+    user = User.find_by(id: session[:user_id])
+    userCredits = user.credits
+    if 60 <= userCredits || user.credits == 60
+      false
+    elsif userCredits + newCredits > 60
+      false
+    else
+      user.credits += newCredits 
+      true
+    end 
   end
 
   # GET /registered_fors/1/edit
@@ -32,9 +48,10 @@ class RegisteredForsController < ApplicationController
   def create
     @registered_for = RegisteredFor.new(user_id: session[:user_id], module_code: params[:module_code])
     
+    
     respond_to do |format|
-      if @registered_for.save
-        format.html { redirect_to registered_fors_url, notice: 'Registered for was successfully created.' }
+      if checkCredits(@registered_for.module_code) && @registered_for.save
+        format.html { redirect_to modules_url, notice: 'Registered for was successfully created.' }
         format.json { render :index, status: :created, location: @registered_for }
       else
         format.html { render :new }

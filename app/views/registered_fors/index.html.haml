@@ -12,9 +12,7 @@
     %tr
       %td= registered_for.user_id
       %td= registered_for.module_code
-      %td= link_to 'Show', registered_for
-      %td= link_to 'Edit', edit_registered_for_path(registered_for)
-      %td= link_to 'Destroy', registered_for, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Remove', registered_for, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
