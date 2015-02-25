@@ -1,0 +1,28 @@
+<div class="col-md-5 col-md-offset-1">
+  <h1>UCC Timetable </h1>
+</div>
+
+<% if(logged_in?) %>
+    <div  id="create-event">
+      <%= link_to new_event_path, remote: true do %>
+        <button class="btn btn-default">
+          Create Event
+        </button>
+      <% end %>
+    </div>
+    <div  id="create-meeting">
+      <%= link_to new_meeting_path do %>
+        <button class="btn btn-default">
+          Create Meeting
+        </button>
+      <% end %>
+    </div>
+    <div  id="logout">
+      <%= link_to logout_path do %>
+        <button class="btn btn-default">
+          Log Out
+        </button>
+      <% end %>
+    </div>
+<% end %>
+ 

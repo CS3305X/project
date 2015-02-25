@@ -2,16 +2,6 @@
   %h1 #{session[:name]}'s Calendar 
    
       
-.col-md-2.col-md-offset-4#create-event
-  = link_to new_event_path, remote: true do
-    %button.btn.btn-default
-      Create Event
-
-.col-md-1.col-md-offset-4#create-event
-  = link_to new_meeting_path do
-    %button.btn.btn-default
-      Create Meeting
-      
 .row#event-calendar
   .col-md-10.col-md-offset-1#calendar
 
