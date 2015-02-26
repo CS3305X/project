@@ -24,10 +24,10 @@ class RegisteredForsController < ApplicationController
     newCredits = newCredits.credits
     user = User.find_by(id: session[:user_id])
     userCredits = user.credits
-    if 10 <= userCredits || user.credits == 10
+    if 60 <= userCredits || user.credits == 60
       flash[:danger] = "Can't add more than 60 credits!"
       false
-    elsif userCredits + newCredits > 10
+    elsif userCredits + newCredits > 60
       false
     else
       user.credits += newCredits 
@@ -36,7 +36,15 @@ class RegisteredForsController < ApplicationController
     end 
   end
   
-  
+  ##Check to see if the user has already registered for the module
+  def validateModules(moduleCode)
+    if !RegisteredFor.find_by(user_id: session[:user_id], module_code: moduleCode)
+      true
+    else
+      flash[:danger] = "You are already registered for #{moduleCode}"
+      false
+    end 
+  end
   
   def removeCredits(removedModule)
     user = User.find(session[:user_id])
@@ -52,7 +60,8 @@ class RegisteredForsController < ApplicationController
     
     
     respond_to do |format|
-      if checkCredits(@registered_for.module_code) && @registered_for.save
+      if validateModules(@registered_for.module_code) && checkCredits(@registered_for.module_code)
+        @registered_for.save if @registered_for.valid?
         flash[:success] = "Now registered for #{@registered_for.module_code} | "
         format.html { redirect_to modules_url }
         format.json { render :index, status: :created, location: @registered_for }
