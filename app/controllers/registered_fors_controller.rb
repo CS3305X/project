@@ -46,6 +46,7 @@ class RegisteredForsController < ApplicationController
     end 
   end
   
+  #If a module is removed also remove the credits from the users credit column.
   def removeCredits(removedModule)
     user = User.find(session[:user_id])
     removedModule = Subject.find_by(module_code: removedModule)
