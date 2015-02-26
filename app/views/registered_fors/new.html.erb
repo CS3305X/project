@@ -19,7 +19,7 @@
         <td><%= subject.description %></td>
         <td><%= subject.lecturer_id %></td>
         <td><%= subject.credits %></td>
-        <td><!--<% hidden_field(:object, :value => subject.module_code) %>--> <%= f.submit "add module", value: subject.module_code, name: :module_code %></td>
+        <td><!--<% hidden_field(:object, :value => subject.module_code) %>--> <%= f.submit "add module", value: subject.module_code, name: :module_code, :class => 'btn btn-sm btn-primary' %></td>
       </tr>
     <% end %>
   </tbody>

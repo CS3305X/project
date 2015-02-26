@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
 
   #Ensure the user has a secure password
   has_secure_password
-  validates :password, length: { minimum: 6 }, confirmation: true 
-  validates :password_confirmation, presence: true
+  #validates :password, length: { minimum: 6 }, confirmation: true 
+  #validates :password_confirmation, presence: true
   
   validates :user_type_id, presence: true
 end

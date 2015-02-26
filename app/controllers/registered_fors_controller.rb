@@ -12,11 +12,6 @@ class RegisteredForsController < ApplicationController
     end 
   end
 
-  # GET /registered_fors/1
-  # GET /registered_fors/1.json
-  def show
-  end
-
   # GET /registered_fors/new
   def new
     @registered_fors = RegisteredFor.new
@@ -29,16 +24,25 @@ class RegisteredForsController < ApplicationController
     newCredits = newCredits.credits
     user = User.find_by(id: session[:user_id])
     userCredits = user.credits
-    if condition
-      
-    elsif 60 <= userCredits || user.credits == 60
+    if 10 <= userCredits || user.credits == 10
+      flash[:danger] = "Can't add more than 60 credits!"
       false
-    elsif userCredits + newCredits > 60
+    elsif userCredits + newCredits > 10
       false
     else
       user.credits += newCredits 
+      user.save
       true
     end 
+  end
+  
+  
+  
+  def removeCredits(removedModule)
+    user = User.find(session[:user_id])
+    removedModule = Subject.find_by(module_code: removedModule)
+    user.credits -= removedModule.credits
+    user.save
   end
 
   # POST /registered_fors
@@ -49,25 +53,11 @@ class RegisteredForsController < ApplicationController
     
     respond_to do |format|
       if checkCredits(@registered_for.module_code) && @registered_for.save
-        format.html { redirect_to modules_url, notice: 'Registered for was successfully created.' }
+        flash[:success] = "Now registered for #{@registered_for.module_code} | "
+        format.html { redirect_to modules_url }
         format.json { render :index, status: :created, location: @registered_for }
       else
-        format.html { render :new }
-        format.json { render json: @registered_for.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /registered_fors/1
-  # PATCH/PUT /registered_fors/1.json
-  def update
-    respond_to do |format|
-      if @registered_for.update(registered_for_params)
-        format.html { redirect_to @registered_for, notice: 'Registered for was successfully updated.' }
-        format.json { render :show, status: :ok, location: @registered_for }
-      else
-        flash.now[:danger] = "This module was not added"
-        format.html { render :edit }
+        format.html { redirect_to modules_url}
         format.json { render json: @registered_for.errors, status: :unprocessable_entity }
       end
     end
@@ -76,11 +66,11 @@ class RegisteredForsController < ApplicationController
   # DELETE /registered_fors/1
   # DELETE /registered_fors/1.json
   def destroy
-    #module_code = @registered_for.module_code
-    #credits = Subject
+    removeCredits(@registered_for.module_code)
     @registered_for.destroy
     respond_to do |format|
-      format.html { redirect_to registered_fors_url, notice: 'Registered for was successfully destroyed.' }
+      flash[:success] = "Module successfully removed!"
+      format.html { redirect_to modules_url}
       format.json { head :no_content }
     end
   end

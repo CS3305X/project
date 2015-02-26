@@ -1,0 +1,25 @@
+<h2>You have registered for <%= showCredits %> credits</h2>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Module code</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% @registered_fors.each do |registered_for| %>
+    <tr>
+      <td>
+        <%= registered_for.user_id %>
+      </td>
+      <td>
+        <%= registered_for.module_code %>
+      </td>
+      <td>
+        <%= link_to 'Remove', registered_for, :method => :delete, :data => { :confirm => 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<br/>
+<%= link_to 'Add New Modules', addmodules_path %>
