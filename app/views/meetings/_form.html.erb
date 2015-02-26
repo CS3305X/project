@@ -1,0 +1,30 @@
+<%= form_for(@meeting) do |f| %>
+  <% if @meeting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @meeting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :users %><br>
+    Please enter the student/staff numbers of the users you wish to
+    oranganise a meeting with.
+    For example: "123456789,123456788,12344567"<br>
+    <%= f.text_field :users %>
+  </div>
+  <div class="field">
+    <%= f.label :day %><br>
+    <%= f.text_field :day %>
+
+  <div class="actions">
+    <%= f.submit "Check if users are free"%>
+  </div>
+<% end %>
+
+
