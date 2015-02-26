@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   get 'modules' => 'registered_fors#index'
   get 'addmodules' => 'registered_fors#new'
+  post 'addmodules' => 'registered_fors#new'
 
   resources :user_groups
 

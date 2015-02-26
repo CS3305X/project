@@ -29,7 +29,9 @@ class RegisteredForsController < ApplicationController
     newCredits = newCredits.credits
     user = User.find_by(id: session[:user_id])
     userCredits = user.credits
-    if 60 <= userCredits || user.credits == 60
+    if condition
+      
+    elsif 60 <= userCredits || user.credits == 60
       false
     elsif userCredits + newCredits > 60
       false
