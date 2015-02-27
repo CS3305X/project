@@ -5,4 +5,8 @@ class ApplicationController < ActionController::Base
   #Makes methods available from Applicationcontroller to those that do not inherit it? I think.
   include SessionsHelper
   
+  def current_user
+    @current_user = logged_in_user
+  end
+
 end
