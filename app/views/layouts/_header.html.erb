@@ -2,7 +2,6 @@
   <h1>UCC Timetable </h1>
 </div>
 
-<% if(logged_in?) %>
     <div  id="create-event">
       <%= link_to new_event_path, remote: true do %>
         <button class="btn btn-default">
@@ -24,5 +23,4 @@
         </button>
       <% end %>
     </div>
-<% end %>
  

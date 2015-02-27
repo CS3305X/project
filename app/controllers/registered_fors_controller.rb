@@ -1,15 +1,11 @@
 class RegisteredForsController < ApplicationController
   before_action :set_registered_for, only: [:show, :edit, :update, :destroy]
+  before_filter :logged
 
   # GET /registered_fors
   # GET /registered_fors.json
   def index
-    if logged_in?
       @registered_fors = RegisteredFor.where(user_id: session[:user_id])
-    else
-      redirect_to login_url
-      flash[:notice] = 'You need to be logged in to use this feature.'
-    end 
   end
 
   # GET /registered_fors/new
