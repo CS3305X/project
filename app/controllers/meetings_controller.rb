@@ -61,19 +61,9 @@ class MeetingsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def meeting_params
-      params.require(:meeting).permit(:start_time, :end_time, :description, :location, :organiser_id, :confirmed_by_all, :users, :days)
-    end
-    
-    def find_free_slots(users, meeting_start_date)
+  def find_free_slots(users, meeting_start_date)
       free_slots_array = []
+      slots_which_suit_all = [1,1,1,1,1,1,1,1,1]
       user_num = 0
       
       users.each do |user|
@@ -90,10 +80,17 @@ class MeetingsController < ApplicationController
           end
           timeslot+=1
         end
+        user_num += 1
       end
       
-      return free_slots_array
-    end
+      free_slots_array.each do |free_slots|
+        for j in 0..9
+          slots_which_suit_all[j] &= free_slots[j]
+        end
+      end
+      
+      return slots_which_suit_all
+  end
     
     def is_available(user, date, hour)
       personal = Event.find_by_sql ["SELECT * FROM events WHERE DATE(start) = '?' 
@@ -111,4 +108,16 @@ class MeetingsController < ApplicationController
         return false
       end
     end  
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_meeting
+      @meeting = Meeting.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def meeting_params
+      params.require(:meeting).permit(:start_time, :end_time, :description, :location, :organiser_id, :confirmed_by_all, :users, :days)
+    end
+    
+    
 end
