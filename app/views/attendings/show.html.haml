@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @attending.user_id
+%p
+  %b Meeting:
+  = @attending.meeting_id
+%p
+  %b Confirmed:
+  = @attending.confirmed
+
+= link_to 'Edit', edit_attending_path(@attending)
+\|
+= link_to 'Back', attendings_path

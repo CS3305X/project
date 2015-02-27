@@ -1,0 +1,10 @@
+= simple_form_for(@attending) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :meeting_id
+    = f.input :confirmed
+
+  .form-actions
+    = f.button :submit

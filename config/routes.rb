@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :attendings
+
   resources :registered_fors
 
   get 'sessions/new'
