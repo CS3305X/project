@@ -14,12 +14,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">UCC Timetable</a>
+          <a class="navbar-brand" >UCC Timetable</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             
          <% if(logged_in?) %>
+         <li><a><%= link_to events_path do  %> My Calender </a>  <% end %></li>
             <li><a><%= link_to new_event_path, remote: true do %> Create Events</a>  <% end %></li>
             <li><a><%= link_to new_meeting_path do  %> New Meeting  </a>  <% end %></li>
             <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
