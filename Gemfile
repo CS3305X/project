@@ -42,7 +42,7 @@ gem 'spring',        group: :development
 # Calendar Gems
 gem 'jquery-ui-rails', '~> 4.2.1'
 gem 'haml-rails', '~> 0.5.3'
-gem 'bootstrap-sass', '~> 3.1.1.1'
+gem 'bootstrap-sass',       '3.2.0.0'
 gem 'rabl', '~> 0.9.3'
 gem 'momentjs-rails', '~> 2.5.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'

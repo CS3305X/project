@@ -1,28 +1,35 @@
-<div class="col-md-5 col-md-offset-1">
-  <h1>UCC Timetable </h1>
-</div>
+<script src="/workspace/app/assets/javascripts/modernizr.custom.js"></script>
 
-<% if(logged_in?) %>
-    <div  id="create-event">
-      <%= link_to new_event_path, remote: true do %>
-        <button class="btn btn-default">
-          Create Event
-        </button>
-      <% end %>
-    </div>
-    <div  id="create-meeting">
-      <%= link_to new_meeting_path do %>
-        <button class="btn btn-default">
-          Create Meeting
-        </button>
-      <% end %>
-    </div>
-    <div  id="logout">
-      <%= link_to logout_path do %>
-        <button class="btn btn-default">
-          Log Out
-        </button>
-      <% end %>
-    </div>
-<% end %>
+<link rel="shortcut icon" href="/workspace/public/favicon.ico"/>
+
+   
  
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+     
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">UCC Timetable</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            
+         <% if(logged_in?) %>
+            <li><a><%= link_to new_event_path, remote: true do %> Create Events</a>  <% end %></li>
+            <li><a><%= link_to new_meeting_path do  %> New Meeting  </a>  <% end %></li>
+            <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
+            <li><a> <%= link_to logout_path do %> Log Out</a>  <% end %></li>
+          
+          <% end %>
+          </ul>
+      
+        </div>
+      </div>
+     
+    </nav>  
+  
