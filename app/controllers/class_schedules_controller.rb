@@ -1,6 +1,8 @@
 class ClassSchedulesController < ApplicationController
   before_action :set_class_schedule, only: [:show, :edit, :update, :destroy]
   respond_to :html, :js, :json
+  before_filter :authorize
+  before_filter :logged
 
   # GET /class_schedules
   # GET /class_schedules.json

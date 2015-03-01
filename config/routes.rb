@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'error' => 'static_pages#error'
+
+
   resources :registered_fors
 
   get 'sessions/new'
@@ -16,6 +19,8 @@ Rails.application.routes.draw do
   get 'modules' => 'registered_fors#index'
   get 'addmodules' => 'registered_fors#new'
   post 'addmodules' => 'registered_fors#create'
+  
+  get 'admin' => 'admin#dashboard'
 
   resources :user_groups
 

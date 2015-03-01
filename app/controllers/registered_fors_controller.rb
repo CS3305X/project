@@ -1,15 +1,11 @@
 class RegisteredForsController < ApplicationController
   before_action :set_registered_for, only: [:show, :edit, :update, :destroy]
+  before_filter :logged
 
   # GET /registered_fors
   # GET /registered_fors.json
   def index
-    if logged_in?
       @registered_fors = RegisteredFor.where(user_id: session[:user_id])
-    else
-      redirect_to login_url
-      flash[:notice] = 'You need to be logged in to use this feature.'
-    end 
   end
 
   # GET /registered_fors/new
@@ -22,16 +18,16 @@ class RegisteredForsController < ApplicationController
   def checkCredits(newModule)
     newCredits = Subject.find_by(module_code: newModule)
     newCredits = newCredits.credits
-    user = User.find_by(id: session[:user_id])
-    userCredits = user.credits
-    if 60 <= userCredits || user.credits == 60
+    #user = User.find_by(id: session[:user_id])
+    userCredits = current_user.credits
+    if 60 <= userCredits || userCredits == 60
       flash[:danger] = "Can't add more than 60 credits!"
       false
     elsif userCredits + newCredits > 60
       false
     else
-      user.credits += newCredits 
-      user.save
+      current_user.credits += newCredits 
+      current_user.save
       true
     end 
   end
@@ -58,8 +54,6 @@ class RegisteredForsController < ApplicationController
   # POST /registered_fors.json
   def create
     @registered_for = RegisteredFor.new(user_id: session[:user_id], module_code: params[:module_code])
-    
-    
     respond_to do |format|
       if validateModules(@registered_for.module_code) && checkCredits(@registered_for.module_code)
         @registered_for.save if @registered_for.valid?

@@ -1,5 +1,7 @@
 class UsertypesController < ApplicationController
   before_action :set_usertype, only: [:show, :edit, :update, :destroy]
+  before_filter :authorize
+  before_filter :logged
 
   # GET /usertypes
   # GET /usertypes.json
