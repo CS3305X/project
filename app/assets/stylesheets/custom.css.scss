@@ -8,10 +8,11 @@
     color: white;
 }
  body {
-    background-image: url("http://uccexpress.ie/wp-content/uploads/2014/07/quad-with-red-ivy.jpg");
+    background-image: url("http://www.ucc.ie/en/build/news/archive/_00T7498.jpg");
     background-size: 100%;
      filter: blur (5px);
      background-repeat: no-repeat;
+     background-attachment: fixed;
 }
 
 .fc-content{
@@ -19,7 +20,37 @@
     background-color: white;
 }
 
-.col-md-offset-5{
+.col-md-offset-5,.col-md-offset-1,.col-md-offset-2, .col-md-offset-4{
     
     background-color:white;
+}
+
+.yourmodules{
+    
+    background-color:white;
+    padding-top:10px;
+}
+
+.dialog{
+text-align: center;
+background-color:white;
+
+}
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12
+{
+    
+    
+    border: 1px solid;
+    border-radius: 15px;
+}
+
+.row{
+    
+    padding-top: 25px;
+    
+}
+
+.teamfooter{
+    
+    color:white;
 }
