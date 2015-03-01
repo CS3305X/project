@@ -11,7 +11,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/1.json
   def show
   end
-
+  
   # GET /meetings/new
   def new
     @meeting = Meeting.new
@@ -24,18 +24,26 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    @meeting = Meeting.new(meeting_params)
+    if(params[:meeting][:algorithm])
+      #results = ["a", "b", "c"]
+      session[:results] = find_free_slots(params[:meeting][:users], params[:meeting][:day])
+      scheduler
 
-    respond_to do |format|
-      if @meeting.save
-        format.html { redirect_to events, notice: 'Meeting was successfully created.' }
-        format.json { render :show, status: :created, location: @meeting }
-      else
-        format.html { render :new }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
+      flash[:danger] = "WHOO"
+    else
+      @meeting = Meeting.new(params[:meeting])
+      respond_to do |format|
+        if @meeting.save
+          format.html { redirect_to events, notice: 'Meeting was successfully created.' }
+          format.json { render :show, status: :created, location: @meeting }
+        else
+          format.html { render :new }
+          format.json { render json: @meeting.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
+
 
   # PATCH/PUT /meetings/1
   # PATCH/PUT /meetings/1.json
@@ -61,7 +69,15 @@ class MeetingsController < ApplicationController
     end
   end
 
-  def find_free_slots(users, meeting_start_date)
+  def scheduler
+    @results = session[:results]
+    render :scheduler
+  end
+
+  def find_free_slots(users_string, meeting_start_date)
+    users = users_string.split(",")
+    users << session[:user_id]
+    
     free_slots_array = []
     slots_which_suit_all = [1,1,1,1,1,1,1,1,1]
     user_num = 0
@@ -94,42 +110,54 @@ class MeetingsController < ApplicationController
     index = 0
     
     for x in 9..17 #Check each hour from 9:00 to 17:00
-      if(slots_which_suit_all[index] = 1)
-        suitable_times << x
+      if(slots_which_suit_all[index] == 1)
+        suitable_times << "#{meeting_start_date} #{x}:00:00".to_datetime
       end
+      index+=1
     end
-    
+
     return suitable_times
   end
     
   def is_available(user, date, hour)
-    personal = Event.where("DATE(start) = ?", date.to_date).
+    personal_starts = Event.where("DATE(start) = ?", date.to_date).
                                  where("HOUR(start) = ?", hour).
                                     where(user_id: user)
+    
+    if(hour < 10)
+        personal_middle = Event.find_by_sql ["SELECT * FROM events WHERE user_id = ?
+                                        AND DATE(finish) = ? AND (TIME(start) < '0?:00:01' AND TIME(finish) > '0?:00:01')", user, date, hour, (hour + 1)]
+    else 
+        personal_middle = Event.find_by_sql ["SELECT * FROM events WHERE user_id = ?
+                                        AND DATE(finish) = ? AND (TIME(start) < '?:00:01' AND TIME(finish) > '?:00:01')", user, date, hour, (hour + 1)]
+    end
+                                        
+    personal_ends = Event.find_by_sql ["SELECT * FROM events WHERE user_id = ?
+                                        AND DATE(finish) = ? AND TIME(finish) BETWEEN '?:00:01' AND '?:59:59'", user, date, hour, hour]                        
+                                    
     classes = ClassSchedule.find_by_sql ["SELECT * FROM registered_fors WHERE user_id = ? 
                                           AND module_code IN (SELECT module_code FROM class_schedules WHERE DATE(start_time) = ?
                                           AND HOUR(start_time) = ?)", user, date.to_date, hour]
     meetings = Meeting.find_by_sql ["SELECT * FROM attendings WHERE user_id = ? AND 
                                       meeting_id  IN (SELECT id FROM meetings WHERE DATE(start_time) = ? 
                                       AND HOUR(start_time) = ?)", user, date.to_date, hour]
+                                      
+                                      
       
-    if(personal.blank? && classes.blank? && meetings.blank?)
+    if(personal_starts.blank? && personal_middle.blank? && personal_ends.blank? && classes.blank? && meetings.blank?)
       return true
     else
       return false
     end
-  end  
-    
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meeting
-      @meeting = Meeting.find(params[:id])
-    end
+  end
+  
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meeting
+    @meeting = Meeting.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def meeting_params
-      params.require(:meeting).permit(:start_time, :end_time, :description, :location, :organiser_id, :confirmed_by_all, :users, :days)
-    end
-    
-    
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def meeting_params
+    params.require(:meeting).permit(:start_time, :end_time, :description, :location, :organiser_id, :confirmed_by_all, :users, :days, :algorithm)
+  end
 end

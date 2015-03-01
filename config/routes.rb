@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   get 'modules' => 'registered_fors#index'
   get 'addmodules' => 'registered_fors#new'
   post 'addmodules' => 'registered_fors#create'
-
+  
+  get 'scheduler' => 'meetings#scheduler'
+  
+  #get "/fetch_times" => 'meetings#find_free_slots', as: 'fetch_times'
+  
   resources :user_groups
 
   resources :meetings

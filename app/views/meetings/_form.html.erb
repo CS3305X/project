@@ -12,6 +12,9 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  <div class="field">
     <%= f.label :users %><br>
     Please enter the student/staff numbers of the users you wish to
     oranganise a meeting with.
@@ -20,10 +23,12 @@
   </div>
   <div class="field">
     <%= f.label :day %><br>
-    <%= f.text_field :day %>
+    <%= f.date_field :day %>
+    
+    <%= f.hidden_field :algorithm, :value => 1 %>
 
   <div class="actions">
-    <%= f.submit "Check if users are free"%>
+    <%= f.submit "Find Suitable Times" %>
   </div>
 <% end %>
 
