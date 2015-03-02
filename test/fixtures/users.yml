@@ -3,9 +3,9 @@
 one:
   user_type_id: 
   user_id: 1
-  first_name: MyString
-  last_name: MyString
-  email: MyString
+  first_name: Test1
+  last_name: Test1
+  email: Test1@emal.com
   phone_num: MyString
   password_digest: MyString
   activated: false
@@ -15,7 +15,7 @@ two:
   user_id: 1
   first_name: MyString
   last_name: MyString
-  email: MyString
+  email: Test2@emal.com
   phone_num: MyString
   password_digest: MyString
   activated: false

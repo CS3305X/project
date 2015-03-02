@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to events_url
     else
       #Output an error message. See /test/integration/users_login_test.rb for more
-      flash.now[:danger] = "Invalid id/password combination"
+      flash.now[:danger] = "Invalid ID or Password"
       #render the 'new' session page (login) again: /sessions/new
       render 'new'
     end
