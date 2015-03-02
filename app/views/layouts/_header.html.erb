@@ -22,7 +22,7 @@
             
         <% if(logged_in?) %>
          <li><a><%= link_to events_path do  %> My Calender </a>  <% end %></li>
-            <li><a><%= link_to new_event_path, remote: true do %> Create Events</a>  <% end %></li>
+        
             <li><a><%= link_to new_meeting_path do  %> New Meeting  </a>  <% end %></li>
             <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
             <li><a> <%= link_to logout_path do %> Log Out</a>  <% end %></li>
