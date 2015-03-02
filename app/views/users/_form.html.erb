@@ -1,3 +1,4 @@
+
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
@@ -13,31 +14,31 @@
 
   <div class="field">
     <%= f.label :id %><br>
-    <%= f.number_field :id %>
+    <%= f.number_field :id,  class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name,class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name,class: "form-control" %>
   </div>
   <!--<div class="field">
     <%= f.label :email %><br>
-    <%= f.email_field :email %>
+    <%= f.email_field :email,class: "form-control" %>
   </div>-->
   <div class="field">
     <%= f.label :phone_num %><br>
-    <%= f.text_field :phone_num %>
+    <%= f.text_field :phone_num,class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password,class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation %><br>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation,class: "form-control" %>
   </div>
   <div class="field">
     <%= f.label :user_type_id %><br>
@@ -52,5 +53,6 @@
   </div> -->
   <div class="actions">
     <%= f.submit "Create User"%>
+  </div>
   </div>
 <% end %>

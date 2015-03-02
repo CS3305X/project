@@ -2,14 +2,10 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:edit, :update, :delete, :destroy]
 
   respond_to :html, :js, :json
+  before_filter :logged
 
   def index
-    if logged_in?
-      @events = Event.where(user_id: current_id)
-    else
-      redirect_to login_url
-      flash[:notice] = 'You need to be logged in to use this feature.'
-    end 
+      @events = Event.where(user_id: session[:user_id])
   end
 
   def new

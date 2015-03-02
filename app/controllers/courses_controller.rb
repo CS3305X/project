@@ -1,6 +1,8 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authorize
+  before_filter :logged
+  
   # GET /courses
   # GET /courses.json
   def index
