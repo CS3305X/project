@@ -25,11 +25,10 @@ Rails.application.routes.draw do
   
 
   get 'scheduler' => 'meetings#scheduler'
-  
-  #get "/fetch_times" => 'meetings#find_free_slots', as: 'fetch_times'
-  
 
   get 'admin' => 'admin#dashboard'
+  
+  get 'tutorial' => 'class_schedules#new'
 
 
   resources :user_groups

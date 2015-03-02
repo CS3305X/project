@@ -24,10 +24,21 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
   helper_method :logged_in?
+  
   def logged 
     unless logged_in?
       redirect_to login_url
       flash[:danger] = 'You need to be logged in to use this feature.'
     end
   end 
+  
+  def is_student?
+    current_user.user_type_id == 1
+  end
+  helper_method :is_student?
+  
+  def is_lecturer?
+    current_user.user_type_id == 2
+  end
+  helper_method :is_lecturer?
 end

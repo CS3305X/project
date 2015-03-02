@@ -7,10 +7,17 @@ class ClassSchedulesController < ApplicationController
   # GET /class_schedules
   # GET /class_schedules.json
   def index
-    @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
+    if(is_student?)
+      @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
                                                   WHERE module_code IN (SELECT module_code
 			                                                                  FROM registered_fors
 			                                                                  WHERE user_id = '?')", session[:user_id]]
+		elsif(is_lecturer?)
+		  @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
+		                                                WHERE module_code IN (SELECT module_code
+		                                                                      FROM subjects
+		                                                                      WHERE lecturer_id = '?')", session[:user_id]]
+	  end
   end
 
   # GET /class_schedules/1
