@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150227115943) do
+ActiveRecord::Schema.define(version: 20150302223950) do
 
   create_table "attendings", force: true do |t|
     t.string   "user_id"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20150227115943) do
     t.datetime "end_time"
     t.string   "location"
     t.boolean  "cancelled"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+  end
+
+  create_table "courses", force: true do |t|
+    t.string   "course_id"
+    t.string   "course_name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

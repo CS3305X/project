@@ -40,13 +40,14 @@ class ClassSchedulesController < ApplicationController
   # POST /class_schedules.json
   def create
     module_code = params[:class_schedule][:module_code]
+    title = params[:class_schedule][:title]
     location = params[:class_schedule][:location]
     num_weeks = params[:class_schedule][:repeats].to_i
     start_date = params[:class_schedule][:date]
     start_time = params[:class_schedule][:time_s]
     end_time = params[:class_schedule][:time_e]
     
-    @class_schedule = ClassSchedule.new(module_code: module_code, start_time: "#{start_date} #{start_time}".to_datetime, 
+    @class_schedule = ClassSchedule.new(module_code: module_code, title: title, start_time: "#{start_date} #{start_time}".to_datetime, 
                                         end_time: "#{start_date} #{end_time}".to_datetime, location: location)
     
     @class_schedule.save
@@ -56,7 +57,7 @@ class ClassSchedulesController < ApplicationController
       #Add 7 days to start and end times
       start_date = (start_date.to_date + 7.days).to_date
       
-      @class_schedule = ClassSchedule.new(module_code: module_code, start_time: "#{start_date} #{start_time}".to_datetime, 
+      @class_schedule = ClassSchedule.new(module_code: module_code, title: title, start_time: "#{start_date} #{start_time}".to_datetime, 
                                         end_time: "#{start_date} #{end_time}".to_datetime, location: location)
       @class_schedule.save
       num_weeks-=1
