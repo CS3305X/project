@@ -25,11 +25,8 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     if(params[:meeting][:algorithm])
-      #results = ["a", "b", "c"]
       session[:results] = find_free_slots(params[:meeting][:users], params[:meeting][:day])
       scheduler
-
-      flash[:danger] = "WHOO"
     else
       @meeting = Meeting.new(params[:meeting])
       respond_to do |format|
@@ -70,6 +67,7 @@ class MeetingsController < ApplicationController
   end
 
   def scheduler
+    @meeting = Meeting.new
     @results = session[:results]
     render :scheduler
   end
