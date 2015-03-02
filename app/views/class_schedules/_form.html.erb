@@ -16,17 +16,26 @@
     <%= f.text_field :module_code %>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.label "Start Time" %><br>
+    <%= f.time_field :time_s %>
+  </div>
+  <div class="field">
+    <%= f.label "End Time" %><br>
+    <%= f.time_field :time_e %>
   </div>
   <div class="field">
     <%= f.label :location %><br>
     <%= f.text_field :location %>
   </div>
+  <div class="field">
+    <%= f.label "How many weeks should this event repeat for?" %><br>
+    <%= f.number_field :repeats %>
+  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
