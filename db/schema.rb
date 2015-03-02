@@ -31,13 +31,6 @@ ActiveRecord::Schema.define(version: 20150227115943) do
     t.datetime "updated_at"
   end
 
-  create_table "courses", force: true do |t|
-    t.string   "course_id"
-    t.string   "course_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "events", force: true do |t|
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

@@ -36,8 +36,6 @@ Rails.application.routes.draw do
 
   resources :meetings
 
-  resources :courses
-
   #resources :class_schedules
 
   resources :subjects
