@@ -1,0 +1,28 @@
+
+  <table class="table table-hover">
+
+    <thead>
+      <tr>
+        <th>Suitable Times on <%=@results[0].strftime("%A, %B %e") %>   </th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+
+    <tbody>
+      <% @results.each do |result| %>
+        <%= form_for(@meeting) do |f| %>
+          <tr>
+            <td><%= result.strftime("%H:%M%p")  %></td>
+            <% f.hidden_field :algorithm, :value => 0 %>
+
+            <td><%= f.submit "Organise Meeting", :class => 'btn btn-sm btn-primary' %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
