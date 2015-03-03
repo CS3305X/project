@@ -6,9 +6,16 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
+
+
+
 <body data-no-turbolink="true"> 
  
+
   <div class="container-fluid">
+    
+    
       <div class="row" id="header">
         <%= render 'layouts/header' %>
       </div>
@@ -18,13 +25,14 @@
       <div class="row" id="footer">
         <%= render 'layouts/footer' %>
       </div>
-    </div>
-    <!-- Outputs a flash message/warning -->
+       <!-- Outputs a flash message/warning -->
     <% flash.each do |message_type, message| %>
-    <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <div class="alert alert-<%= message_type %> col-md-2 col-md-offset-5"><%= message %></div>
     <% end %>
-    <!-- <%= debug(params) if Rails.env.development? %> -->
 
+    </div>
+    
+    <!-- <%= debug(params) if Rails.env.development? %> -->
 
 
 </body>

@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'admin' => 'admin#dashboard'
   
   get 'tutorial' => 'class_schedules#new'
+  
+  post 'scheduler' => 'meetings#create'
 
 
   resources :user_groups

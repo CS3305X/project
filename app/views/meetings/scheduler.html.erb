@@ -14,8 +14,7 @@
         <% @results.each do |result| %>
             <tr>
               <td><%= result.strftime("%H:%M%p")  %></td>
-              <% f.hidden_field :algorithm, :value => 0 %>
-              <td><%= f.submit "Organise Meeting", value: result, name: :start_time, :class => 'btn btn-sm btn-primary' %></td>
+              <td><%= f.hidden_field :start_time, :value => result %><%= f.hidden_field :algorithm, :value => 0 %><%= f.submit "Organise Meeting", value: "Organise Meeting", name: :start_time, :class => 'btn btn-sm btn-primary' %></td>
             </tr>
         <% end %>
       <% end %>
