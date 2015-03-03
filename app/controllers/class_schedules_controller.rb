@@ -31,9 +31,9 @@ class ClassSchedulesController < ApplicationController
 
   # GET /class_schedules/new
   def new
+    @module_codes = []
     if(is_lecturer?)
       class_options = (Subject.find_by_sql ["SELECT module_code FROM subjects WHERE lecturer_id = ?", @current_user.id])
-      @module_codes = []
       
       class_options.each do |classobject|
         @module_codes << classobject.module_code

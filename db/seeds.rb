@@ -16,6 +16,11 @@ User.create(id: 123456789, user_type_id: 1,first_name: "Joe",last_name: "Blog",
 # Create Lecturer Account
 User.create(id: 11, user_type_id: 2,first_name: "James",last_name: "Doherty", 
                           email: "11@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
+                          
+# Create Admin Account
+User.create(id: 001, user_type_id: 3,first_name: "Admin",last_name: "Account", 
+                          email: "admin@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
+                          
 
 Subject.create(module_code: "cs1101", description: "System Organisation 1", lecturer_id:11, credits: 5)
 Subject.create(module_code: "cs1111", description: "System Organisation 2", lecturer_id:11, credits: 5)

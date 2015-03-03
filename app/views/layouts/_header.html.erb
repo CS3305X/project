@@ -30,6 +30,9 @@
           <% if(is_lecturer?) %>
             <li><a><%= link_to tutorial_path do  %> Create Tutorial</a> <% end %> </li>
           <% end %>
+          <% if(admin?) %>
+            <li><a><%= link_to tutorial_path do  %> Schedule Classes</a> <% end %> </li>
+          <% end %>
             
           <li><a> <%= link_to logout_path do %> Log Out</a>  <% end %></li>
         <% end %>
