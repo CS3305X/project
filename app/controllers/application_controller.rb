@@ -18,7 +18,8 @@ class ApplicationController < ActionController::Base
   
   def admin?
     true if session[:user_type_id] == 3
-  end 
+  end
+  helper_method :admin?
   
   def logged_in?
     !current_user.nil?
