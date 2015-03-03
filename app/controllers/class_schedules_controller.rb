@@ -19,6 +19,8 @@ class ClassSchedulesController < ApplicationController
 		                                                WHERE module_code IN (SELECT module_code
 		                                                                      FROM subjects
 		                                                                      WHERE lecturer_id = '?')", session[:user_id]]
+		elsif(admin?)
+		  @class_schedules = ClassSchedule.all
 	  end
   end
 
@@ -29,6 +31,22 @@ class ClassSchedulesController < ApplicationController
 
   # GET /class_schedules/new
   def new
+    if(is_lecturer?)
+      class_options = (Subject.find_by_sql ["SELECT module_code FROM subjects WHERE lecturer_id = ?", @current_user.id])
+      @module_codes = []
+      
+      class_options.each do |classobject|
+        @module_codes << classobject.module_code
+      end
+
+    elsif(admin?)
+      class_options = Subject.all
+      
+      class_options.each do |classobject|
+        @module_codes << classobject.module_code
+      end
+
+    end
     @class_schedule = ClassSchedule.new
   end
 
