@@ -1,11 +1,11 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
   before_filter :logged
-
+  
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    @meetings = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = 123456789)"]
   end
 
   # GET /meetings/1
@@ -16,6 +16,7 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
+    #@algorithm_result = 1
   end
 
   # GET /meetings/1/edit
@@ -25,14 +26,28 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
-    if(params[:meeting][:algorithm])
-      session[:results] = find_free_slots(params[:meeting][:users], params[:meeting][:day])
+    @algorithm_result = params[:meeting][:algorithm]
+    if(@algorithm_result.to_i == 1) #params[:meeting][:algorithm]
       scheduler
     else
-      @meeting = Meeting.new(params[:meeting])
+      start_time = "2015-01-01 00:00:00"
+      start_time = params[:meeting][:start_time]
+
+      end_time = (start_time.to_datetime + 1.hour).to_datetime
+      @meeting = Meeting.new
+      @meeting.start_time = start_time
+      @meeting.end_time = end_time
+      @meeting.description = session[:description]
+      @meeting.organiser_id = current_user.id
+      
       respond_to do |format|
         if @meeting.save
-          format.html { redirect_to events, notice: 'Meeting was successfully created.' }
+          users = session[:users_for_meeting]
+      
+          users.each do |user|
+            @attendings = Attending.create(user_id: user, meeting_id: @meeting.id)
+          end
+          format.html { redirect_to events_url, notice: 'Meeting was successfully created.' }
           format.json { render :show, status: :created, location: @meeting }
         else
           format.html { render :new }
@@ -68,6 +83,10 @@ class MeetingsController < ApplicationController
   end
 
   def scheduler
+    #params[:meeting][:algorithm] = 0
+    @algorithm_result = 0
+    session[:results] = find_free_slots(params[:meeting][:users], params[:meeting][:day])
+    session[:description] = params[:meeting][:description]
     @meeting = Meeting.new
     @results = session[:results]
     render :scheduler
@@ -76,7 +95,8 @@ class MeetingsController < ApplicationController
   def find_free_slots(users_string, meeting_start_date)
     users = users_string.split(",")
     users << session[:user_id]
-    
+    session[:users_for_meeting] = users
+    @invited_users = users
     free_slots_array = []
     slots_which_suit_all = [1,1,1,1,1,1,1,1,1]
     user_num = 0

@@ -34,7 +34,7 @@ $(document).on('page:change', function() {
     height: 700,
     editable: true,
     resizable: true,
-    eventSources: [ '/events', '/class_schedules'
+    eventSources: [ '/events', '/class_schedules', '/meetings'
        //'http://www.google.com/calendar/feeds/06301rf5gpts71p4aqc5lcgt24%40group.calendar.google.com/public/basic'
       ],
     eventRender: function(event, element) {
