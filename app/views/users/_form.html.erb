@@ -24,10 +24,12 @@
     <%= f.label :last_name %><br>
     <%= f.text_field :last_name,class: "form-control" %>
   </div>
-  <!--<div class="field">
+  <% if(admin?) %>
+    <div class="field">
     <%= f.label :email %><br>
     <%= f.email_field :email,class: "form-control" %>
-  </div>-->
+      </div>
+  <% end %>
   <div class="field">
     <%= f.label :phone_num %><br>
     <%= f.text_field :phone_num,class: "form-control" %>

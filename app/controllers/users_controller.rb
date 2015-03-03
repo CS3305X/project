@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, :except => [:show , :new , :create]
+  #before_filter :authorize, :except => [:show , :new , :create]
   before_filter :logged, :except => [:new, :create]
 
   # GET /users
@@ -22,26 +22,48 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+  
+  def newStaff
+  end
+  
+  def createStaff
+    flash[:info] = "Ok"
+  end 
+  
+  def staff
+    @staff = User.where(user_type_id: 2)
+  end 
 
   # POST /users
   # POST /users.json
   def create
     #Create the user from the form submission
-    @user = User.new(id: params[:user][:id], user_type_id: 1, first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
+    if admin?
+      params[:user][:user_type_id] = 2;
+    else
+      params[:user][:user_type_id] = 1;
+    end
+    
+    @user = User.new(id: params[:user][:id], user_type_id: params[:user][:user_type_id], first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
                           email: "#{params[:user][:id]}@umail.ucc.ie", phone_num: params[:user][:phone_num], 
                           password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
     
     #Assign the user an email depending on whether they are student or staff
-    if params[:user][:user_type_id] == '2'
+    if params[:user][:user_type_id] == 2
       @user.email = params[:user][:email]
     end
     
     respond_to do |format|
       if check_for_existing_user(@user) 
         if @user.save
-          log_in(@user)
-          format.html { redirect_to events_path, notice: 'Your account has been created' }
-          format.json { render :show, status: :created, location: @user }
+          if admin?
+            format.html { redirect_to staff_path, notice: "Staff account for #{params[:user][:first_name]} #{params[:user][:last_name]} has been created" }
+            format.json { render :show, status: :created, location: @user }
+          else
+            log_in(@user)
+            format.html { redirect_to events_path, notice: 'Your account has been created' }
+            format.json { render :show, status: :created, location: @user }
+          end
         else
           format.html { render :new }
           format.json { render json: @user.errors, status: :unprocessable_entity }

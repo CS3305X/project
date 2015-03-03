@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   get 'tutorial' => 'class_schedules#new'
   
   post 'scheduler' => 'meetings#create'
+  
+  get 'newstaff' => 'users#new'
+  post 'newstaff' => 'users#new'
+  get 'staff' => 'users#staff'
 
 
   resources :user_groups
