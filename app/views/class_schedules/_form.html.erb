@@ -13,24 +13,33 @@
 
   <div class="field">
     <%= f.label :module_code %><br>
-    <%= f.text_field :module_code %>
+    <%= f.select :module_code, @module_codes%>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+    <%= f.label "Class Title" %><br>
+    <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.label :date %><br>
+    <%= f.date_field :date %>
+  </div>
+  <div class="field">
+    <%= f.label "Start Time" %><br>
+    <%= f.time_field :time_s %>
+  </div>
+  <div class="field">
+    <%= f.label "End Time" %><br>
+    <%= f.time_field :time_e %>
   </div>
   <div class="field">
     <%= f.label :location %><br>
     <%= f.text_field :location %>
   </div>
   <div class="field">
-    <%= f.label :cancelled %><br>
-    <%= f.check_box :cancelled %>
+    <%= f.label "How many weeks should this event repeat for?" %><br>
+    <%= f.number_field :repeats, :value => 0 %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

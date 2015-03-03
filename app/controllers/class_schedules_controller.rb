@@ -7,10 +7,21 @@ class ClassSchedulesController < ApplicationController
   # GET /class_schedules
   # GET /class_schedules.json
   def index
-    @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
+    if(is_student?)
+      #Get Students Classes using the Registered_for table
+      @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
                                                   WHERE module_code IN (SELECT module_code
 			                                                                  FROM registered_fors
-			                                                                  WHERE user_id = '?')", session[:user_id]]
+	                                                                      WHERE user_id = '?')", session[:user_id]]
+		elsif(is_lecturer?)
+		#Get Lecturer's Classes using the Lecturer ID in the Subjects Table
+		  @class_schedules = ClassSchedule.find_by_sql ["SELECT * FROM class_schedules
+		                                                WHERE module_code IN (SELECT module_code
+		                                                                      FROM subjects
+		                                                                      WHERE lecturer_id = '?')", session[:user_id]]
+		elsif(admin?)
+		  @class_schedules = ClassSchedule.all
+	  end
   end
 
   # GET /class_schedules/1
@@ -20,6 +31,22 @@ class ClassSchedulesController < ApplicationController
 
   # GET /class_schedules/new
   def new
+    if(is_lecturer?)
+      class_options = (Subject.find_by_sql ["SELECT module_code FROM subjects WHERE lecturer_id = ?", @current_user.id])
+      @module_codes = []
+      
+      class_options.each do |classobject|
+        @module_codes << classobject.module_code
+      end
+
+    elsif(admin?)
+      class_options = Subject.all
+      
+      class_options.each do |classobject|
+        @module_codes << classobject.module_code
+      end
+
+    end
     @class_schedule = ClassSchedule.new
   end
 
@@ -30,17 +57,30 @@ class ClassSchedulesController < ApplicationController
   # POST /class_schedules
   # POST /class_schedules.json
   def create
-    @class_schedule = ClassSchedule.new(class_schedule_params)
+    module_code = params[:class_schedule][:module_code]
+    title = params[:class_schedule][:title]
+    location = params[:class_schedule][:location]
+    num_weeks = params[:class_schedule][:repeats].to_i
+    start_date = params[:class_schedule][:date]
+    start_time = params[:class_schedule][:time_s]
+    end_time = params[:class_schedule][:time_e]
+    
+    @class_schedule = ClassSchedule.new(module_code: module_code, title: title, start_time: "#{start_date} #{start_time}".to_datetime, 
+                                        end_time: "#{start_date} #{end_time}".to_datetime, location: location)
+    
+    @class_schedule.save
 
-    respond_to do |format|
-      if @class_schedule.save
-        format.html { redirect_to @class_schedule, notice: 'Class schedule was successfully created.' }
-        format.json { render :show, status: :created, location: @class_schedule }
-      else
-        format.html { render :new }
-        format.json { render json: @class_schedule.errors, status: :unprocessable_entity }
-      end
+    
+    while(num_weeks > 0)
+      #Add 7 days to start and end times
+      start_date = (start_date.to_date + 7.days).to_date
+      
+      @class_schedule = ClassSchedule.new(module_code: module_code, title: title, start_time: "#{start_date} #{start_time}".to_datetime, 
+                                        end_time: "#{start_date} #{end_time}".to_datetime, location: location)
+      @class_schedule.save
+      num_weeks-=1
     end
+    redirect_to events_path
   end
 
   # PATCH/PUT /class_schedules/1
@@ -75,6 +115,6 @@ class ClassSchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def class_schedule_params
-      params.require(:class_schedule).permit(:subjects_id, :module_code, :start_time, :end_time, :location, :cancelled)
+      params.require(:class_schedule).permit(:subjects_id, :module_code, :start_time, :end_time, :location, :cancelled, :repeats)
     end
 end

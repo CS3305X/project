@@ -1,4 +1,3 @@
-# SQLite version 3.x
 
 default: &default
   adapter: mysql2

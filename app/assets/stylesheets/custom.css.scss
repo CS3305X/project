@@ -7,13 +7,13 @@
     
     color: white;
 }
- body {
-    background-image: url("http://www.ucc.ie/en/build/news/archive/_00T7498.jpg");
-    background-size: 100%;
-     filter: blur (5px);
-     background-repeat: no-repeat;
-     background-attachment: fixed;
+
+body { 
+  background: url("http://www.ucc.ie/en/build/news/archive/_00T7498.jpg") no-repeat center center fixed; 
+  background-size: cover;
 }
+
+
 
 .fc-content{
     
