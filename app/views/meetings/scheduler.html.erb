@@ -10,11 +10,11 @@
 
 
     <tbody>
-      <%= form_for(@meeting) do |f| %>
-        <% @results.each do |result| %>
+      <% @results.each do |result| %>
+        <%= form_for(@meeting) do |f| %>
             <tr>
               <td><%= result.strftime("%H:%M%p")  %></td>
-              <td><%= f.hidden_field :start_time, :value => result %><%= f.hidden_field :algorithm, :value => 0 %><%= f.submit "Organise Meeting", value: "Organise Meeting", name: :start_time, :class => 'btn btn-sm btn-primary' %></td>
+              <td><%= f.hidden_field :start_time, :value => result %><%= f.hidden_field :algorithm, :value => 0 %><%= f.submit "Organise Meeting", value: "Organise Meeting", name: "submit", :class => 'btn btn-sm btn-primary' %></td>
             </tr>
         <% end %>
       <% end %>

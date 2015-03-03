@@ -30,7 +30,6 @@ Subject.create(module_code: "cs1114", description: "Web Development 1", lecturer
 Subject.create(module_code: "cs1115", description: "Web Development 2", lecturer_id:16, credits: 5)
 Subject.create(module_code: "cs1118", description: "Multimedia", lecturer_id:17,credits: 5)
 
-#Create Second Year Subjects
 Subject.create(module_code: "cs2500", description: "Software Development", lecturer_id:21, credits: 15)
 Subject.create(module_code: "cs2501", description: "Database Design and Development", lecturer_id:22,credits: 5)
 Subject.create(module_code: "cs2502", description: "Logic Design", lecturer_id:23, credits: 5)

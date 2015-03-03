@@ -27,10 +27,9 @@ class MeetingsController < ApplicationController
   # POST /meetings.json
   def create
     @algorithm_result = params[:meeting][:algorithm]
-    if(@algorithm_result.to_i == 1) #params[:meeting][:algorithm]
+    if(@algorithm_result.to_i == 1) 
       scheduler
     else
-      start_time = "2015-01-01 00:00:00"
       start_time = params[:meeting][:start_time]
 
       end_time = (start_time.to_datetime + 1.hour).to_datetime
@@ -39,7 +38,7 @@ class MeetingsController < ApplicationController
       @meeting.end_time = end_time
       @meeting.description = session[:description]
       @meeting.organiser_id = current_user.id
-      
+
       respond_to do |format|
         if @meeting.save
           users = session[:users_for_meeting]
@@ -47,7 +46,7 @@ class MeetingsController < ApplicationController
           users.each do |user|
             @attendings = Attending.create(user_id: user, meeting_id: @meeting.id)
           end
-          format.html { redirect_to events_url, notice: 'Meeting was successfully created.' }
+          format.html { redirect_to meetings_path, notice: 'Meeting was successfully created.' }
           format.json { render :show, status: :created, location: @meeting }
         else
           format.html { render :new }
