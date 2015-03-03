@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
   
   def admin?
-    true if session[:user_type_id] == "3"
+    true if session[:user_type_id] == 3
   end 
   
   def logged_in?
