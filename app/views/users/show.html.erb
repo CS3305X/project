@@ -1,3 +1,4 @@
+<div class="col-md-6 col-md-offset-3">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -30,15 +31,7 @@
   <%= @user.phone_num %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Activated:</strong>
-  <%= @user.activated %>
-</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+</div>
