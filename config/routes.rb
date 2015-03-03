@@ -22,10 +22,10 @@ Rails.application.routes.draw do
   get 'modules' => 'registered_fors#index'
   get 'addmodules' => 'registered_fors#new'
   post 'addmodules' => 'registered_fors#create'
-  
-
+  get 'newmodule' => 'subjects#new'
+  get 'addclasses' => 'class_schedules#new'
   get 'scheduler' => 'meetings#scheduler'
-
+  get 'seeusers' => 'users#index'
   get 'admin' => 'admin#dashboard'
   
   get 'tutorial' => 'class_schedules#new'
