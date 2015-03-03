@@ -1,5 +1,5 @@
 .col-md-5.col-md-offset-1
-  %h1 #{@current_user.first_name}'s Calendar 
+  %h1 #{@current_user.first_name} #{@current_user.last_name}'s Calendar 
   
 .col-md-1.col-md-offset-4#create-event
   = link_to new_event_path, remote: true do

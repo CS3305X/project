@@ -10,13 +10,15 @@ Usertype.create(type_id: 2, type_name: "Lecturer")
 Usertype.create(type_id: 3, type_name: "Administrator")
 
 # Create the intial test user
-User.create(id: 123456789, user_type_id: 1,first_name: "Test",last_name: "User", 
+User.create(id: 123456789, user_type_id: 1,first_name: "Joe",last_name: "Blog", 
                           email: "123456789@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
 
-
+# Create Lecturer Account
+User.create(id: 11, user_type_id: 2,first_name: "James",last_name: "Doherty", 
+                          email: "11@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
 
 Subject.create(module_code: "cs1101", description: "System Organisation 1", lecturer_id:11, credits: 5)
-Subject.create(module_code: "cs1111", description: "System Organisation 2", lecturer_id:12, credits: 5)
+Subject.create(module_code: "cs1111", description: "System Organisation 2", lecturer_id:11, credits: 5)
 Subject.create(module_code: "cs1112", description: "Foundations of Computer Science 1", lecturer_id:13, credits: 5)
 Subject.create(module_code: "cs1113", description: "Foundations of Computer Science 1", lecturer_id:14, credits: 5)
 Subject.create(module_code: "cs1114", description: "Web Development 1", lecturer_id:15, credits: 5)
