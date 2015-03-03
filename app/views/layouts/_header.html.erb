@@ -21,9 +21,8 @@
           <ul class="nav navbar-nav navbar-right">
             
         <% if(logged_in?) %>
-         <li><a><%= link_to events_path do  %> My Calender </a>  <% end %></li>
-        
-          <li><a><%= link_to new_meeting_path do  %> New Meeting  </a>  <% end %></li>
+          <li><a><%= link_to events_path do  %> My Calender </a>  <% end %></li>
+          <li><a><%= link_to meetings_path do  %> Meetings  </a>  <% end %></li>
           <% if(is_student?) %>
             <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
           <% end %>
