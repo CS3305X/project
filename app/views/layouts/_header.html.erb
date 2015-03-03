@@ -17,22 +17,22 @@
             
         <% if(logged_in?) %>
           <li>
-            <a><%= link_to events_path do  %> My Calender <% end %> </a> 
+            <%= link_to events_path do  %> My Calender <% end %> 
           </li>
           <li>
-            <a><%= link_to meetings_path do  %> Meetings  </a>  <% end %>
+           <%= link_to meetings_path do  %> Meetings    <% end %>
           </li>
         <% if(is_student?) %>
-          <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
+          <li><%= link_to modules_path do  %> Modules <% end %> </li>
         <% end %>
         
         <% if(is_lecturer?) %>
-          <li><a><%= link_to tutorial_path do  %> Create Tutorial</a> <% end %> </li>
+          <li><%= link_to tutorial_path do  %> Create Tutorial <% end %> </li>
         <% end %>
         
         <% if(admin?) %>   
         <li class="dropdown">
-          <a></a>
+          
        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrative <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li><a><%= link_to subjects_path do  %> Edit Subjects</a> <% end %> </li>
@@ -43,7 +43,7 @@
         </ul>
         </li>
         <% end %>
-        <li><a> <%= link_to logout_path do %> Log Out</a>  <% end %></li>
+        <li> <%= link_to logout_path do %> Log Out <% end %></li>
         <% end %>
       </ul>
     </div>
