@@ -38,7 +38,8 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      if @user.save
+      if check_for_existing_user(@user)
+        @user.save
         log_in(@user)
         format.html { redirect_to events_path, notice: 'Your account has been created' }
         format.json { render :show, status: :created, location: @user }
@@ -48,6 +49,15 @@ class UsersController < ApplicationController
       end
     end
   end
+  
+  def check_for_existing_user(newUser)
+    if User.exists?(newUser.id)
+      @user.errors.add(:user, "already exists!")
+      false
+    else
+      true
+    end
+  end 
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
