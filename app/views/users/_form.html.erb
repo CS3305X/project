@@ -40,17 +40,6 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation,class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :user_type_id %><br>
-    <%= f.radio_button :user_type_id, 1%>
-    <%= label :user_type_id_student, 'Student' %>
-    <%= f.radio_button :user_type_id, 2 %>
-    <%= label :user_type_id_staff, 'Staff' %>
-  </div>
-  <!--<div class="field">
-    <%= f.label :activated %><br>
-    <%= f.check_box :activated %>
-  </div> -->
   <div class="actions">
     <%= f.submit "Create User"%>
   </div>
