@@ -128,7 +128,7 @@ class MeetingsController < ApplicationController
                                         AND DATE(finish) = ? AND (TIME(start) < '0?:00:01' AND TIME(finish) > '0?:00:01')", user, date, hour, (hour + 1)]
     else 
         personal_middle = Event.find_by_sql ["SELECT * FROM events WHERE user_id = ?
-                                        AND DATE(finish) = ? AND (TIME(start) < '?:00:01' AND TIME(finish) > '?:00:01')", user, date, hour, (hour + 1)]
+                                        AND DATE(finish) = ? AND (TIME(start) < '?:00:01' AND TIME(finish) > '?:59:59')", user, date, hour, hour]
     end
                                         
     personal_ends = Event.find_by_sql ["SELECT * FROM events WHERE user_id = ?
