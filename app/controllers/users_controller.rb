@@ -27,8 +27,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     #Create the user from the form submission
-    @user = User.new(id: params[:user][:id], user_type_id: params[:user][:user_type_id],
-                    first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
+    @user = User.new(id: params[:user][:id], user_type_id: 1, first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
                           email: "#{params[:user][:id]}@umail.ucc.ie", phone_num: params[:user][:phone_num], 
                           password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
     
@@ -38,14 +37,15 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      if check_for_existing_user(@user)
-        @user.save
-        log_in(@user)
-        format.html { redirect_to events_path, notice: 'Your account has been created' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      if check_for_existing_user(@user) 
+        if @user.save
+          log_in(@user)
+          format.html { redirect_to events_path, notice: 'Your account has been created' }
+          format.json { render :show, status: :created, location: @user }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
