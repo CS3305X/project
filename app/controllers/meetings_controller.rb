@@ -38,6 +38,8 @@ class MeetingsController < ApplicationController
       @meeting.end_time = end_time
       @meeting.description = session[:description]
       @meeting.organiser_id = current_user.id
+      @meeting.organiser_name = "#{@current_user.first_name} #{@current_user.last_name}"
+      @meeting.location = session[:location]
 
       respond_to do |format|
         if @meeting.save
@@ -82,10 +84,10 @@ class MeetingsController < ApplicationController
   end
 
   def scheduler
-    #params[:meeting][:algorithm] = 0
     @algorithm_result = 0
     session[:results] = find_free_slots(params[:meeting][:users], params[:meeting][:day])
     session[:description] = params[:meeting][:description]
+    session[:location] = params[:meeting][:location]
     @meeting = Meeting.new
     @results = session[:results]
     render :scheduler

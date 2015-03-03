@@ -1,36 +1,40 @@
-<div class="col-md-4 col-md-offset-4">
-<h1>Listing meetings</h1>
-<%= link_to 'New Meeting', new_meeting_path, class: "btn btn-default" %>
-<table>
+<div class="col-md-10 col-md-offset-1">
+<h1>Meetings</h1>
+<%= link_to 'Organise New Meeting', new_meeting_path, class: "btn btn-primary" %>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-hover">
+
   <thead>
     <tr>
+      <th>Description</th>
       <th>Start time</th>
       <th>End time</th>
-      <th>Description</th>
       <th>Location</th>
       <th>Organiser</th>
-      <th>Confirmed by all</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @meetings.each do |meeting| %>
-      <tr>
-        <td><%= meeting.start_time %></td>
-        <td><%= meeting.end_time %></td>
-        <td><%= meeting.description %></td>
-        <td><%= meeting.location %></td>
-        <td><%= meeting.organiser_id %></td>
-        <td><%= meeting.confirmed_by_all %></td>
-        <td><%= link_to 'Show', meeting %></td>
-        <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
-        <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if(meeting.end_time > DateTime.now) %>
+        <tr>
+          <td><%= meeting.description %></td>
+          <td><%= meeting.start_time.strftime("%H:%M - %d/%m/%Y") %></td>
+          <td><%= meeting.end_time.strftime("%H:%M - %d/%m/%Y")  %></td>
+          <td><%= meeting.location %></td>
+          <td><%= meeting.organiser_name %></td>
+          <% if(meeting.organiser_id == @current_user.id) %>
+            <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure you want to delete this meeting?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
-
+</div>
+</div>
 <br>
 </div>
 

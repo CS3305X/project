@@ -1,24 +1,38 @@
 <div class="col-md-4 col-md-offset-4">
   <table class="table table-hover">
 
-    <thead>
-      <tr>
-        <th>Suitable Times on <%=@results[0].strftime("%A, %B %e") %>   </th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
 
-
-    <tbody>
-      <% @results.each do |result| %>
-        <%= form_for(@meeting) do |f| %>
-            <tr>
-              <td><%= result.strftime("%H:%M%p")  %></td>
-              <td><%= f.hidden_field :start_time, :value => result %><%= f.hidden_field :algorithm, :value => 0 %><%= f.submit "Organise Meeting", value: "Organise Meeting", name: "submit", :class => 'btn btn-sm btn-primary' %></td>
-            </tr>
+    <% if(@results.blank?) %>
+      <thead>
+        <tr>
+          <th>No suitable times are available on the chosen date, please try another. </th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= link_to 'Try Another Date', new_meeting_path %>
+      </tbody>
+    <% end %>
+    
+    <% if(!@results.blank?) %>
+      <thead>
+        <tr>
+          <th>Suitable Times on <%=@results[0].strftime("%A, %B %e") %>   </th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <% @results.each do |result| %>
+          <%= form_for(@meeting) do |f| %>
+              <tr>
+                <td><%= result.strftime("%H:%M%p")  %></td>
+                <td><%= f.hidden_field :start_time, :value => result %><%= f.hidden_field :algorithm, :value => 0 %><%= f.submit "Organise Meeting", value: "Organise Meeting", name: "submit", :class => 'btn btn-sm btn-primary' %></td>
+              </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
+      </tbody>
+    <% end %>
   </table>
 
 </div>
