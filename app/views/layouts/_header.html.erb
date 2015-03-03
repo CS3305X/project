@@ -1,12 +1,7 @@
 <script src="/workspace/app/assets/javascripts/modernizr.custom.js"></script>
 
-
 <link rel="shortcut icon" href="/workspace/public/favicon.ico"/>
-
-   
- 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-     
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -21,27 +16,37 @@
           <ul class="nav navbar-nav navbar-right">
             
         <% if(logged_in?) %>
-          <li><a><%= link_to events_path do  %> My Calender </a>  <% end %></li>
-          <li><a><%= link_to meetings_path do  %> Meetings  </a>  <% end %></li>
-          <% if(is_student?) %>
-            <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
-          <% end %>
-          <% if(is_lecturer?) %>
-            <li><a><%= link_to tutorial_path do  %> Create Tutorial</a> <% end %> </li>
-          <% end %>
-          <% if(admin?) %>
-            <li><a><%= link_to subjects_path do  %> Edit Subjects</a> <% end %> </li>
-            <li><a><%= link_to newmodule_path do  %> Add Modules</a> <% end %> </li>
-            <li><a><%= link_to addclasses_path do  %> Add Classes</a> <% end %> </li>
-            <li><a><%= link_to seeusers_path do  %> See List of Users</a> <% end %> </li>
-          <% end %>
-            
-          <li><a> <%= link_to logout_path do %> Log Out</a>  <% end %></li>
+          <li>
+            <a><%= link_to events_path do  %> My Calender <% end %> </a> 
+          </li>
+          <li>
+            <a><%= link_to meetings_path do  %> Meetings  </a>  <% end %>
+          </li>
+        <% if(is_student?) %>
+          <li><a><%= link_to modules_path do  %> Modules</a> <% end %> </li>
         <% end %>
-          
-          </ul>
-      
-        </div>
-      </div>
-     
-    </nav>  
+        
+        <% if(is_lecturer?) %>
+          <li><a><%= link_to tutorial_path do  %> Create Tutorial</a> <% end %> </li>
+        <% end %>
+        
+        <% if(admin?) %>   
+        <li class="dropdown">
+          <a></a>
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrative <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a><%= link_to subjects_path do  %> Edit Subjects</a> <% end %> </li>
+          <li><a><%= link_to newmodule_path do  %> Add Modules</a> <% end %> </li>
+          <li><a><%= link_to addclasses_path do  %> Add Classes</a> <% end %> </li>
+          <li><a><%= link_to seeusers_path do  %> See List of Users</a> <% end %> </li>
+          <li><a><%= link_to seeusers_path do  %> See List of Staff</a> <% end %> </li>
+        </ul>
+        </li>
+        <% end %>
+        <li><a> <%= link_to logout_path do %> Log Out</a>  <% end %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>  
+
