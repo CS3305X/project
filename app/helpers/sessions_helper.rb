@@ -3,6 +3,7 @@ module SessionsHelper
   def log_in(user)
     session[:user_id] = user.id
     session[:user_type_id] = user.user_type_id
+    current_user
   end
   
   def log_out
