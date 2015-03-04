@@ -59,3 +59,20 @@ background-color:white;
     
     border-top:white 0px solid;
 }
+#create-meeting,#create-event:not(.nostyle) {
+background: none;
+border:0px;
+}
+
+#calendarname{
+    
+    padding-bottom:10px;
+}
+#helper{
+    
+    color:white;
+}
+#calendar{
+    padding-top:5px;
+    
+}

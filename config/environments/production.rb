@@ -75,4 +75,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_mailer.delivery_method = :mailgun
+config.action_mailer.mailgun_settings = {domain: 'app1c5f730c51ed470fa102ed368ca64f41.mailgun.org
+'}
+config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :port           => ENV['587'],
+    :address        => ENV['smtp.mailgun.org'],
+    :user_name      => ENV['postmaster@app1c5f730c51ed470fa102ed368ca64f41.mailgun.org'],
+    :password       => ENV['5ac8b098e88e36d80af5e54ef539bcde'],
+    :domain         => 'arcane-wave-7604.herokuapp.com', #eg: 'yourappname.herokuapp.com'
+    :authentication => :plain,
+  }
 end

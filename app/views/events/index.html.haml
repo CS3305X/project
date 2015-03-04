@@ -1,11 +1,18 @@
-.col-md-5.col-md-offset-1
+.col-md-5.col-md-offset-1#calendarname
   %h1 #{@current_user.first_name} #{@current_user.last_name}'s Calendar 
   
-.col-md-1.col-md-offset-4#create-event
+.col-md-2.col-md-offset-3#create-event
   = link_to new_event_path, remote: true do
-    %button.btn.btn-default
-      Create Event   
+    %button.btn.btn-success.btn-block
+      Create Event
       
+      
+.col-md-2.col-md-offset-3#create-meeting
+  = link_to addmeeting_path do
+    %button.btn.btn-primary.btn-block
+      Create Meeting 
+  
+    
 .row#event-calendar
   .col-md-10.col-md-offset-1#calendar
 

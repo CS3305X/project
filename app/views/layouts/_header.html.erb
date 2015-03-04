@@ -1,6 +1,4 @@
 <script src="/workspace/app/assets/javascripts/modernizr.custom.js"></script>
-
-<link rel="shortcut icon" href="/workspace/public/favicon.ico"/>
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -13,8 +11,7 @@
           <a class="navbar-brand" >UCC Timetable</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            
+    <ul class="nav navbar-nav navbar-right">
         <% if(logged_in?) %>
           <li>
             <%= link_to events_path do  %> My Calendar <% end %> 
@@ -22,31 +19,39 @@
           <li>
            <%= link_to meetings_path do  %> Meetings    <% end %>
           </li>
-        <% if(is_student?) %>
+
+         <% if(is_student?) %>
+
           <li><%= link_to modules_path do  %> Modules <% end %> </li>
-        <% end %>
+          <% end %>
         
-        <% if(is_lecturer?) %>
-          <li><%= link_to tutorial_path do  %> Create Tutorial <% end %> </li>
-        <% end %>
+          <% if(is_lecturer?) %>
+          <li>
+          <%= link_to tutorial_path do  %> Create Tutorial <% end %> 
+          </li>
+          <% end %>
         
         <% if(admin?) %>   
         <li class="dropdown">
-          
        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administrative <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li><a><%= link_to subjects_path do  %> Edit Subjects</a> <% end %> </li>
-          <li><a><%= link_to newmodule_path do  %> Add Modules</a> <% end %> </li>
-          <li><a><%= link_to addclasses_path do  %> Add Classes</a> <% end %> </li>
-          <li><a><%= link_to seeusers_path do  %> See List of Users</a> <% end %> </li>
-          <li><a><%= link_to seeusers_path do  %> See List of Staff</a> <% end %> </li>
+
+          <li><%= link_to subjects_path do  %> Edit Subjects <% end %> </li>
+          <li><%= link_to newmodule_path do  %> Add Modules <% end %> </li>
+          <li><%= link_to addclasses_path do  %> Add Classes <% end %> </li>
+          <li><%= link_to seeusers_path do  %> See List of Users <% end %> </li>
+          <li><%= link_to staff_path do  %> See List of Staff <% end %> </li>
+
+
         </ul>
         </li>
         <% end %>
+
         <li> <%= link_to directory_path do %> User Directory <% end %></li>
         <li> <%= link_to logout_path do %> Log Out <% end %></li>
+
         <% end %>
-      </ul>
+    </ul>
     </div>
   </div>
 </nav>  

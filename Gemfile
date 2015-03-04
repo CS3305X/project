@@ -52,6 +52,10 @@ gem 'simple_form', '~> 3.1.0.rc1'
 gem 'font-awesome-sass', '~> 4.1.0'
 
 gem 'rails_12factor', '~> 0.0.2', group: :production
+
+
+gem 'mailgunner', '~> 1.3.0'
+
 gem "rspec-rails", :group => [:development, :test]
 
 gem 'twitter-bootstrap-rails'
