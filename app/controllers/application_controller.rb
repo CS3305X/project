@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   helper
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
+    @current_user
   end
   
   def authorize
@@ -18,8 +19,8 @@ class ApplicationController < ActionController::Base
   
   
   def admin?
-    current_user.user_type_id == 3
-  end 
+    true if session[:user_type_id] == "3"
+  end  
   helper_method :admin?
   
   def logged_in?
