@@ -1,6 +1,8 @@
 <div class="col-md-6 col-md-offset-3">
 <p id="notice"><%= notice %></p>
 
+<h1>Welcome <% "#{@user.first_name} #{@user.last_name} "%></h1>
+
 <p>
   <strong>User type:</strong>
   <%= @user.user_type_id %>
