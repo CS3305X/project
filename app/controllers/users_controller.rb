@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, :except => [:show , :new , :create]
+  before_filter :authorize, :except => [:show , :new , :create, :edit, :update, :directory]
   before_filter :logged, :except => [:new, :create]
 
   # GET /users
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     
     @user = User.new(id: params[:user][:id], user_type_id: params[:user][:user_type_id], first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
                           email: "#{params[:user][:id]}@umail.ucc.ie", phone_num: params[:user][:phone_num], 
-                          password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], public_profile: false)
+                          password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], public_profile: params[:user][:password_confirmation])
     
     #Assign the user an email depending on whether they are student or staff
     if params[:user][:user_type_id] == 2

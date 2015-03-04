@@ -11,7 +11,8 @@ class RegisteredForsController < ApplicationController
   # GET /registered_fors/new
   def new
     @registered_fors = RegisteredFor.new
-    @subjects = Subject.all
+    #@subjects = Subject.all
+    @subjects = Subject.find_by_sql ["SELECT * FROM subjects ORDER BY module_code"] 
   end
   
   #Check to see how many credits a user has before adding more modules (max 60)

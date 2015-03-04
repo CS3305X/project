@@ -6,7 +6,6 @@ class MeetingsController < ApplicationController
   # GET /meetings.json
   def index
     @meetings = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = true) ORDER BY start_time", session[:user_id]]
-    #@unconfirmed = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = false) ORDER BY start_time", session[:user_id]]
     @unconfirmed = Attending.find_by_sql ["SELECT * FROM attendings WHERE user_id = ? AND confirmed = false", session[:user_id]]
     @unconfirmed_details = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = false) ORDER BY start_time", session[:user_id]]
   end

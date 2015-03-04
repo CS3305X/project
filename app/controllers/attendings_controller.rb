@@ -53,7 +53,7 @@ class AttendingsController < ApplicationController
     meeting = Meeting.find(@attending.meeting_id)
     notification_text = "#{current_user.first_name} #{current_user.last_name} has declined your invite to #{meeting.description}."
     Notification.create(user_id: meeting.organiser_id, message: notification_text)
-    @attending.destroy
+    @attending.update(user_id: null)
 
     respond_to do |format|
       format.html { redirect_to meetings_path, notice: 'Attending was successfully destroyed.' }
