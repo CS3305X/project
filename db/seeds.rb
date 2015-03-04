@@ -11,11 +11,11 @@ Usertype.create(type_id: 3, type_name: "Administrator")
 
 # Create the intial test user
 User.create(id: 123456789, user_type_id: 1,first_name: "Joe",last_name: "Blog", 
-                          email: "123456789@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
+                          email: "123456789@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx", public_profile: true)
 
 # Create Lecturer Account
 User.create(id: 11, user_type_id: 2,first_name: "James",last_name: "Doherty", 
-                          email: "11@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
+                          email: "11@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx", public_profile: true)
                           
 # Create Admin Account
 User.create(id: 001, user_type_id: 3,first_name: "Admin",last_name: "Account", 
