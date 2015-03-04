@@ -1,6 +1,7 @@
-<h1>Editing subject</h1>
-
+<div class="row content col-md-4 col-md-offset-4">
+<h1>Edit Subject</h1>
+<%= link_to 'Show', @subject,class: "btn btn-default" %> |
+<%= link_to 'Back', subjects_path,class: "btn btn-default" %>
 <%= render 'form' %>
 
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+

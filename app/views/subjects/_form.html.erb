@@ -2,7 +2,6 @@
   <% if @subject.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-
       <ul>
       <% @subject.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -29,8 +28,10 @@
     <%= f.label :credits %><br>
     <%= f.number_field :credits %>
   </div>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>
   </div>
 <% end %>
+</div>

@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-feature 'Event management' do
+describe 'Event management' do
   scenario 'creates a new event', js: true do
-    visit root_path
+    visit events_path
     click_button('Create Event')
 
     fill_form(:event, attributes_for(:event))
