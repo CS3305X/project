@@ -61,7 +61,7 @@ class UsersController < ApplicationController
             format.json { render :show, status: :created, location: @user }
           else
             log_in(@user)
-            
+            AppMailer.welcome_email(@user).deliver
             format.html { redirect_to events_path, notice: 'Your account has been created' }
             format.json { render :show, status: :created, location: @user }
           end
