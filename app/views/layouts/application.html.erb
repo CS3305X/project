@@ -23,7 +23,7 @@
         <%= yield %>
       </div>
       <div class="row" id="footer">
-        <%= render 'layouts/footer' %>
+ 
       </div>
        <!-- Outputs a flash message/warning -->
     <% flash.each do |message_type, message| %>
@@ -36,4 +36,4 @@
 
 
 </body>
-</html>
+</html><%= render 'layouts/footer' %>
