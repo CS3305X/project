@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   
   
   def admin?
-    true if session[:user_type_id] == "3"
+    current_user.user_type_id == 3
   end  
   helper_method :admin?
   
