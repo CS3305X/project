@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   get 'scheduler' => 'meetings#scheduler'
   get 'seeusers' => 'users#index'
   get 'admin' => 'admin#dashboard'
-  
+  get 'addmeeting' =>'meetings#new'
   get 'tutorial' => 'class_schedules#new'
   
   post 'scheduler' => 'meetings#create'
