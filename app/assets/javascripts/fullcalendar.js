@@ -3475,7 +3475,7 @@ setDefaults({
 	allDaySlot: true,
 	allDayText: 'all-day',
 
-	scrollTime: '06:00:00',
+	scrollTime: '07:00:00',
 
 	slotDuration: '00:30:00',
 
@@ -3487,8 +3487,9 @@ setDefaults({
 	dragOpacity: {
 		agenda: .5
 	},
-	minTime: '08:00:00',
-	maxTime: '21:00:00',
+	minTime: '00:00:00',
+	maxTime: '23:59:59',
+
 	slotEventOverlap: true
 });
 
