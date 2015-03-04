@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       #Re-direct to page
       log_in user
-      redirect_to events_url
+      redirect_to dashboard_path
     else
       #Output an error message. See /test/integration/users_login_test.rb for more
       flash.now[:danger] = "Invalid ID or Password"

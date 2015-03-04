@@ -68,13 +68,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       if check_for_existing_user(@user) 
         if @user.save
+          
           if admin?
             format.html { redirect_to staff_path, notice: "Staff account for #{params[:user][:first_name]} #{params[:user][:last_name]} has been created" }
             format.json { render :show, status: :created, location: @user }
           else
             log_in(@user)
-            AppMailer.welcome_email(@user).deliver
-            format.html { redirect_to events_path, notice: 'Your account has been created' }
+            #AppMailer.welcome_email(@user).deliver
+            format.html { redirect_to dashboard_path, notice: 'Your account has been created' }
             format.json { render :show, status: :created, location: @user }
           end
         else
