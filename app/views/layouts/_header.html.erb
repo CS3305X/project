@@ -22,6 +22,7 @@
           <li>
            <%= link_to meetings_path do  %> Meetings    <% end %>
           </li>
+          
         <% if(is_student?) %>
           <li><%= link_to modules_path do  %> Modules <% end %> </li>
         <% end %>
@@ -39,7 +40,6 @@
           <li><a><%= link_to newmodule_path do  %> Add Modules</a> <% end %> </li>
           <li><a><%= link_to addclasses_path do  %> Add Classes</a> <% end %> </li>
           <li><a><%= link_to seeusers_path do  %> See List of Users</a> <% end %> </li>
-          <li><a><%= link_to seeusers_path do  %> See List of Staff</a> <% end %> </li>
         </ul>
         </li>
         <% end %>

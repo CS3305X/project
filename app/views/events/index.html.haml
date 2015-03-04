@@ -4,8 +4,15 @@
 .col-md-1.col-md-offset-4#create-event
   = link_to new_event_path, remote: true do
     %button.btn.btn-default
-      Create Event   
+      Create Event
       
+      
+.col-md-1.col-md-offset-4#create-meeting
+  = link_to addmeeting_path, remote: true do
+    %button.btn.btn-default
+      Create Meeting 
+  
+    
 .row#event-calendar
   .col-md-10.col-md-offset-1#calendar
 
