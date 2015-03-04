@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #before_filter :authorize, :except => [:show , :new , :create]
+  before_filter :authorize, :except => [:show , :new , :create]
   before_filter :logged, :except => [:new, :create]
 
   # GET /users
@@ -12,6 +12,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if session[:user_id] != @user.id
+      redirect_to error_url
+    end
   end
 
   # GET /users/new
@@ -24,8 +27,8 @@ class UsersController < ApplicationController
   end
   
   def directory
-    @users = User.where(public_profile: true)
-    @staff = User.where(public_profile: true)
+    @users = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 1"]
+    @staff = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 2"]
   end 
   
   def newStaff
