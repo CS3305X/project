@@ -23,7 +23,7 @@
     <%= f.label :users %><br>
     Please enter the student/staff numbers of the users you wish to oranganise a meeting with.
     For example: "123456789,123456788,12344567"<br>
-    <%= f.text_field :users %>
+    <%= f.text_field :users %> <%= link_to 'User Directory', directory_path, :target => '_blank' %>
   </div>
   <div class="field">
     <%= f.label :day %><br>
