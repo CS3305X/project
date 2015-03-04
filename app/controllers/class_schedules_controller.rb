@@ -20,7 +20,7 @@ class ClassSchedulesController < ApplicationController
 		                                                                      FROM subjects
 		                                                                      WHERE lecturer_id = '?')", session[:user_id]]
 		elsif(admin?)
-		  @class_schedules = ClassSchedule.all
+		  @class_schedules = ClassSchedule.order(:module_code)
 	  end
   end
 
@@ -40,7 +40,7 @@ class ClassSchedulesController < ApplicationController
       end
 
     elsif(admin?)
-      class_options = Subject.all
+      class_options = Subject.order(:module_code)
       
       class_options.each do |classobject|
         @module_codes << classobject.module_code

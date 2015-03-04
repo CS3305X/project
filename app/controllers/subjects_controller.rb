@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.order(:module_code)
   end
 
   # GET /subjects/1
