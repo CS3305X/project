@@ -53,3 +53,4 @@ gem 'font-awesome-sass', '~> 4.1.0'
 
 gem 'rails_12factor', '~> 0.0.2', group: :production
 
+gem 'mailgunner', '~> 1.3.0'
