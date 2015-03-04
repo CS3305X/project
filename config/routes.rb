@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :attendings
 
   get 'error' => 'static_pages#error'
+  get 'help' => 'static_pages#help'
 
 
   resources :registered_fors
