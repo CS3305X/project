@@ -19,8 +19,8 @@ class ApplicationController < ActionController::Base
   
   
   def admin?
-    #true if session[:user_type_id] == "3"
-    current_user.user_type_id == 3 
+    true if session[:user_type_id] == "3"
+    #current_user.user_type_id == 3 
   end  
   helper_method :admin?
   
@@ -45,5 +45,10 @@ class ApplicationController < ActionController::Base
     current_user.user_type_id == 2
   end
   helper_method :is_lecturer?
-  
+
+  def count_notifications
+    notifications = Notification.find_by_sql ["SELECT * FROM notifications WHERE user_id = ?", current_user.id]
+    return notifications.size
+  end
+  helper_method :count_notifications
 end

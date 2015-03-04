@@ -14,7 +14,8 @@
     <ul class="nav navbar-nav navbar-right">
         <% if(logged_in?) %>
           <li>
-            <%= link_to dashboard_path do  %> Dashboard <% end %> 
+            <%= link_to dashboard_path do  %> 
+            <% if(count_notifications) == 0 %> Dashboard <% end %><% if(count_notifications) > 0 %> Dashboard <span class="badge">!</span><% end %> <% end %> 
           </li>
           <li>
             <%= link_to events_path do  %> Calendar <% end %> 
