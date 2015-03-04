@@ -27,8 +27,8 @@ class UsersController < ApplicationController
   end
   
   def directory
-    @users = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 1"]
-    @staff = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 2"]
+    @users = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 1 ORDER BY last_name, first_name"]
+    @staff = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 2 ORDER BY last_name, first_name"]
   end 
   
   def newStaff
