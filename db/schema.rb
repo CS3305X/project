@@ -32,13 +32,6 @@ ActiveRecord::Schema.define(version: 20150304122610) do
     t.string   "title"
   end
 
-  create_table "courses", force: true do |t|
-    t.string   "course_id"
-    t.string   "course_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "events", force: true do |t|
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
@@ -99,8 +92,6 @@ ActiveRecord::Schema.define(version: 20150304122610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "credits",         default: 0
-    t.string   "reset_digest"
-    t.datetime "reset_sent_at"
     t.boolean  "public_profile"
   end
 
