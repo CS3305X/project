@@ -57,3 +57,5 @@ gem 'rails_12factor', '~> 0.0.2', group: :production
 gem 'mailgunner', '~> 1.3.0'
 
 gem "rspec-rails", :group => [:development, :test]
+
+gem 'twitter-bootstrap-rails'

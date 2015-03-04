@@ -1,8 +1,9 @@
 <div class="col-md-10 col-md-offset-1">
-<h1>Meetings</h1>
+
 <%= link_to 'Organise New Meeting', new_meeting_path, class: "btn btn-primary" %>
 <div class="panel panel-default">
   <div class="panel-body">
+    <h1>Upcoming Meetings</h1>
     <table class="table table-hover">
 
   <thead>
@@ -12,6 +13,7 @@
       <th>End time</th>
       <th>Location</th>
       <th>Organiser</th>
+      <th>Attendance</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,10 +27,46 @@
           <td><%= meeting.end_time.strftime("%H:%M - %d/%m/%Y")  %></td>
           <td><%= meeting.location %></td>
           <td><%= meeting.organiser_name %></td>
+          <td><%= show_attendance(meeting.id) %></td>
           <% if(meeting.organiser_id == @current_user.id) %>
             <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure you want to delete this meeting?' } %></td>
           <% end %>
+          
         </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<table class="table table-hover">
+  <hr/>
+<h1>Unconfirmed Meetings</h1>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Location</th>
+      <th>Organiser</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @unconfirmed.each do |meeting| %>
+      <% @unconfirmed_details.each do |details| %>
+       <% if(details.end_time > DateTime.now) %>
+        <% if(details.id == meeting.meeting_id) %>
+          <tr>
+            <td><%= details.description %></td>
+            <td><%= details.start_time.strftime("%H:%M - %d/%m/%Y") %></td>
+            <td><%= details.end_time.strftime("%H:%M - %d/%m/%Y")  %></td>
+            <td><%= details.location %></td>
+            <td><%= details.organiser_name %></td>
+            <td><%= link_to '✔', meeting, method: :update%></td>
+            <td><%= link_to 'X', meeting, method: :delete%></td>
+          </tr>
+        <% end %>
+       <% end %>
       <% end %>
     <% end %>
   </tbody>

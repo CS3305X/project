@@ -42,8 +42,25 @@
     <%= f.label :password_confirmation %><br>
     <%= f.password_field :password_confirmation,class: "form-control" %>
   </div>
+  <hr/>
+  <div>
+    <div class="field col-md-4 col-md-offset 4" id="signup-public-select">
+      <%= f.label :public_profile %><br>
+      <%= f.radio_button :public_profile, true%>
+      <%= label :public_profile_true, 'Yes' %>
+      <br>
+      <%= f.radio_button :public_profile, false %>
+      <%= label :public_profile_false, 'No' %>
+    </div>
+    <div class="field col-md-8 col-md-offset 8">
+      <div class="alert alert-warning" role="alert" id="signup-public-note">
+        <p>What does this do? If you click yes it will allow your class mates to look up your student ID in our directory. If you do not want your ID public select no (this might
+            make it harder to invite you to meetings). This option can be changed at a later date.</p>
+      </div>
+    </div>
+  </div>
   <div class="actions">
-    <%= f.submit "Create User"%>
+    <%= f.submit "Create User", class: "btn btn-primary"%>
   </div>
   </div>
 <% end %>

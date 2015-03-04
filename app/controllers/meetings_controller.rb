@@ -5,7 +5,9 @@ class MeetingsController < ApplicationController
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ?) ORDER BY start_time", session[:user_id]]
+    @meetings = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = true) ORDER BY start_time", session[:user_id]]
+    @unconfirmed = Attending.find_by_sql ["SELECT * FROM attendings WHERE user_id = ? AND confirmed = false", session[:user_id]]
+    @unconfirmed_details = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = false) ORDER BY start_time", session[:user_id]]
   end
 
   # GET /meetings/1
@@ -46,7 +48,13 @@ class MeetingsController < ApplicationController
           users = session[:users_for_meeting]
       
           users.each do |user|
-            @attendings = Attending.create(user_id: user, meeting_id: @meeting.id)
+            if(user != current_user.id)
+              @attendings = Attending.create(user_id: user, meeting_id: @meeting.id, confirmed: false)
+              notification_message = "#{@meeting.organiser_name} has invited you to #{@meeting.description} on #{@meeting.start_time.strftime("%A, %e %B at %k:%M")} in #{@meeting.location}"
+              @notifications = Notification.create(user_id: user, message: notification_message)
+            else
+              @attendings = Attending.create(user_id: user, meeting_id: @meeting.id, confirmed: true)
+            end
           end
           format.html { redirect_to meetings_path, notice: 'Meeting was successfully created.' }
           format.json { render :show, status: :created, location: @meeting }

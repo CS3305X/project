@@ -40,27 +40,28 @@ class AttendingsController < ApplicationController
   # PATCH/PUT /attendings/1
   # PATCH/PUT /attendings/1.json
   def update
-    respond_to do |format|
-      if @attending.update(attending_params)
-        format.html { redirect_to @attending, notice: 'Attending was successfully updated.' }
-        format.json { render :show, status: :ok, location: @attending }
-      else
-        format.html { render :edit }
-        format.json { render json: @attending.errors, status: :unprocessable_entity }
-      end
-    end
+    meeting = Meeting.find(@attending.meeting_id)
+    notification_text = "#{current_user.first_name} #{current_user.last_name} has accepted your invite to #{meeting.description}."
+    Notification.create(user_id: meeting.organiser_id, message: notification_text)
+    @attending.update(confirmed: true)
+    redirect_to meetings_path
   end
 
   # DELETE /attendings/1
   # DELETE /attendings/1.json
   def destroy
-    @attending.destroy
+    meeting = Meeting.find(@attending.meeting_id)
+    notification_text = "#{current_user.first_name} #{current_user.last_name} has declined your invite to #{meeting.description}."
+    Notification.create(user_id: meeting.organiser_id, message: notification_text)
+    @attending.update(user_id: null)
+
     respond_to do |format|
-      format.html { redirect_to attendings_url, notice: 'Attending was successfully destroyed.' }
+      format.html { redirect_to meetings_path, notice: 'Attending was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attending
