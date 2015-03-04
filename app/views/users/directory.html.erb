@@ -1,0 +1,48 @@
+<div>
+    <div class="col-md-6">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                  <th>Student ID</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email</th>
+                </tr>
+            </thead>
+        
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.id %></td>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                  <th>Staff ID</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email</th>
+                </tr>
+            </thead>
+        
+          <tbody>
+            <% @staff.each do |staff| %>
+              <tr>
+                <td><%= staff.id %></td>
+                <td><%= staff.first_name %></td>
+                <td><%= staff.last_name %></td>
+                <td><%= staff.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+    </div>
+</div>
