@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
   #Makes methods available from Applicationcontroller to those that do not inherit it? I think.
   include SessionsHelper
   helper
+  
+  #create method called current_user
   def current_user
+    #global variable current user or use find them by current session with user id
     @current_user ||= User.find_by(id: session[:user_id])
     @current_user
   end
