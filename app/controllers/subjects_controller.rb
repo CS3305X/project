@@ -21,6 +21,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
+    @lecturers = User.where(user_type_id: 2)
   end
 
   # POST /subjects

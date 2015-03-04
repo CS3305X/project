@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303175128) do
+ActiveRecord::Schema.define(version: 20150304122610) do
 
   create_table "attendings", force: true do |t|
     t.string   "user_id"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150303175128) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "credits",         default: 0
+    t.boolean  "public_profile"
   end
 
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id", using: :btree

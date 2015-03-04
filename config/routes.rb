@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :attendings
 
   get 'error' => 'static_pages#error'
+  get 'help' => 'static_pages#help'
 
 
   resources :registered_fors
@@ -16,6 +17,8 @@ Rails.application.routes.draw do
   get    'signup'   => 'users#new'
   post   'signup'   => 'users#create'
   #delete 'logout'  => 'sessions#destroy'
+  
+  get 'directory' => 'users#directory'
   
   get 'events' => 'events#index'
   
@@ -35,7 +38,6 @@ Rails.application.routes.draw do
   get 'newstaff' => 'users#new'
   post 'newstaff' => 'users#new'
   get 'staff' => 'users#staff'
-
 
   resources :user_groups
 

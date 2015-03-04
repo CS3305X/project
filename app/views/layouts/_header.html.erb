@@ -14,7 +14,7 @@
     <ul class="nav navbar-nav navbar-right">
         <% if(logged_in?) %>
           <li>
-            <%= link_to events_path do  %> My Calender <% end %> 
+            <%= link_to events_path do  %> My Calendar <% end %> 
           </li>
           <li>
            <%= link_to meetings_path do  %> Meetings    <% end %>
@@ -41,9 +41,10 @@
         </ul>
         </li>
         <% end %>
-        <li> 
-        <%= link_to logout_path do %> Log Out <% end %>
-        </li>
+
+        <li> <%= link_to directory_path do %> User Directory <% end %></li>
+        <li> <%= link_to logout_path do %> Log Out <% end %></li>
+
         <% end %>
     </ul>
     </div>

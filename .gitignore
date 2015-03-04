@@ -3,3 +3,6 @@
 
 #Ignore development.log
 /log/development.log
+
+#Ignore sprockets folder, they're annoying
+/tmp/cache/assets/development/sprockets/

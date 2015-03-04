@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  #before_filter :authorize, :except => [:show , :new , :create]
+  before_filter :authorize, :except => [:show , :new , :create]
   before_filter :logged, :except => [:new, :create]
 
   # GET /users
@@ -12,6 +12,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    if session[:user_id] != @user.id
+      redirect_to error_url
+    end
   end
 
   # GET /users/new
@@ -22,6 +25,11 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
+  
+  def directory
+    @users = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 1"]
+    @staff = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 2"]
+  end 
   
   def newStaff
   end
@@ -46,11 +54,15 @@ class UsersController < ApplicationController
     
     @user = User.new(id: params[:user][:id], user_type_id: params[:user][:user_type_id], first_name: params[:user][:first_name],last_name: params[:user][:last_name], 
                           email: "#{params[:user][:id]}@umail.ucc.ie", phone_num: params[:user][:phone_num], 
-                          password: params[:user][:password], password_confirmation: params[:user][:password_confirmation])
+                          password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], public_profile: false)
     
     #Assign the user an email depending on whether they are student or staff
     if params[:user][:user_type_id] == 2
       @user.email = params[:user][:email]
+    end
+    
+    if params[:user][:user_type_id] == 2
+      @user.public_profile = true
     end
     
     respond_to do |format|
@@ -115,6 +127,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:user_type_id, :user_id, :first_name, :last_name, :email, :phone_num, :password, :password_confirmation)
+      params.require(:user).permit(:user_type_id, :user_id, :first_name, :last_name, :email, :phone_num, :password, :password_confirmation, :public_profile)
     end
 end

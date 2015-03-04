@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-2 col-md-offset-5">
+<%= link_to 'Edit', edit_subject_path(@subject) ,class: "btn btn-default"  %> |
+<%= link_to 'Back', subjects_path,class: "btn btn-default"  %>
 
+<p id="notice"><%= notice %></p>
 <p>
   <strong>Module code:</strong>
   <%= @subject.module_code %>
@@ -20,5 +23,4 @@
   <%= @subject.credits%>
 </p>
 
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
+</div>

@@ -52,5 +52,9 @@ gem 'simple_form', '~> 3.1.0.rc1'
 gem 'font-awesome-sass', '~> 4.1.0'
 
 gem 'rails_12factor', '~> 0.0.2', group: :production
+<<<<<<< HEAD
 
 gem 'mailgunner', '~> 1.3.0'
+=======
+gem "rspec-rails", :group => [:development, :test]
+>>>>>>> 32f339a595fd2dfd7a46b6e17f0a788e3cf01f2b
