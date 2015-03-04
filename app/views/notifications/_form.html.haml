@@ -1,0 +1,9 @@
+= simple_form_for(@notification) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :user_id
+    = f.input :message
+
+  .form-actions
+    = f.button :submit

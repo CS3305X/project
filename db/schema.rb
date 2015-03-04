@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304122610) do
+ActiveRecord::Schema.define(version: 20150304140245) do
 
   create_table "attendings", force: true do |t|
     t.string   "user_id"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20150304122610) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "organiser_name"
+  end
+
+  create_table "notifications", force: true do |t|
+    t.integer  "user_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "registered_fors", force: true do |t|

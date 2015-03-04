@@ -53,3 +53,5 @@ gem 'font-awesome-sass', '~> 4.1.0'
 
 gem 'rails_12factor', '~> 0.0.2', group: :production
 gem "rspec-rails", :group => [:development, :test]
+
+gem 'twitter-bootstrap-rails'

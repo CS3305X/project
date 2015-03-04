@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :notifications
+
   resources :attendings
 
   get 'error' => 'static_pages#error'
@@ -38,6 +40,9 @@ Rails.application.routes.draw do
   get 'newstaff' => 'users#new'
   post 'newstaff' => 'users#new'
   get 'staff' => 'users#staff'
+  post '/attendings/:id', to: 'attendings#update'
+  
+  get 'dashboard' => 'users#show'
 
   resources :user_groups
 
