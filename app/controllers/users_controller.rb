@@ -26,18 +26,22 @@ class UsersController < ApplicationController
   def edit
   end
   
+  #Passes through the @users and @staff variables to the directory view
   def directory
     @users = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 1 ORDER BY last_name, first_name"]
     @staff = User.find_by_sql ["SELECT * FROM users WHERE public_profile = true AND user_type_id = 2 ORDER BY last_name, first_name"]
   end 
   
+  #TODO: remove this method (redundant)
   def newStaff
   end
   
+  #TODO: remove this method (redundant)
   def createStaff
     flash[:info] = "Ok"
   end 
   
+  #Passes through the variable for the staff listing page
   def staff
     @staff = User.where(user_type_id: 2)
   end 
@@ -61,6 +65,7 @@ class UsersController < ApplicationController
       @user.email = params[:user][:email]
     end
     
+    #Staff will be public by default
     if params[:user][:user_type_id] == 2
       @user.public_profile = true
     end
@@ -86,8 +91,10 @@ class UsersController < ApplicationController
     end
   end
   
+  #Make sure the new user cannot override an existing user
   def check_for_existing_user(newUser)
     if User.exists?(newUser.id)
+      #Add an error to the errors arra
       @user.errors.add(:user, "already exists!")
       false
     else

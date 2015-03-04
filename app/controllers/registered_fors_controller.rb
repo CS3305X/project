@@ -2,16 +2,15 @@ class RegisteredForsController < ApplicationController
   before_action :set_registered_for, only: [:show, :edit, :update, :destroy]
   before_filter :logged
 
-  # GET /registered_fors
-  # GET /registered_fors.json
+
   def index
       @registered_fors = RegisteredFor.where(user_id: session[:user_id])
   end
 
-  # GET /registered_fors/new
   def new
     @registered_fors = RegisteredFor.new
-    #@subjects = Subject.all
+    
+    #Select all the subjects in the database and sort them by module code so we can use them in the registered_fors/new view
     @subjects = Subject.find_by_sql ["SELECT * FROM subjects ORDER BY module_code"] 
   end
   
@@ -19,8 +18,10 @@ class RegisteredForsController < ApplicationController
   def checkCredits(newModule)
     newCredits = Subject.find_by(module_code: newModule)
     newCredits = newCredits.credits
-    #user = User.find_by(id: session[:user_id])
+    
+    #assign userCredits the current users current amount of credits
     userCredits = current_user.credits
+    # Check to make sure that the user doesn't add more than 60 credits to their credit count. 
     if 60 <= userCredits || userCredits == 60
       flash[:danger] = "Can't add more than 60 credits!"
       false
@@ -28,12 +29,13 @@ class RegisteredForsController < ApplicationController
       false
     else
       current_user.credits += newCredits 
+      # Save the user if current_user is valid
       current_user.save
       true
     end 
   end
   
-  ##Check to see if the user has already registered for the module
+  #Check to see if the user has already registered for the module
   def validateModules(moduleCode)
     if !RegisteredFor.find_by(user_id: session[:user_id], module_code: moduleCode)
       true
@@ -56,6 +58,8 @@ class RegisteredForsController < ApplicationController
   def create
     @registered_for = RegisteredFor.new(user_id: session[:user_id], module_code: params[:module_code])
     respond_to do |format|
+      
+      #calls the validateModules and checkCredits modules to verify no duplication or user does not have more than 60 credits
       if validateModules(@registered_for.module_code) && checkCredits(@registered_for.module_code)
         @registered_for.save if @registered_for.valid?
         flash[:success] = "Now registered for #{@registered_for.module_code} | "
@@ -70,6 +74,7 @@ class RegisteredForsController < ApplicationController
 
   # DELETE /registered_fors/1
   # DELETE /registered_fors/1.json
+  #If the user removes a module from their module list this will also subtract credits from their credit count.
   def destroy
     removeCredits(@registered_for.module_code)
     @registered_for.destroy

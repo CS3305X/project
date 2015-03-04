@@ -1,7 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize
-  before_filter :logged  
+  before_filter :authorize #see apllications_helper
+  before_filter :logged #see apllications_helper
 
   # GET /subjects
   # GET /subjects.json
