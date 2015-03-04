@@ -20,8 +20,10 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :lecturer_id %><br>
-    <%= f.number_field :lecturer_id %>
+    <%= f.label :lecturer_id %><br/>
+    <%= f.select( "lecturer_id", User.where(user_type_id: 2).collect {|p| [ concatname(p.first_name, p.last_name), p.id ] } )%>
+    <!--<%= f.label :lecturer_id %><br>
+    <%= f.number_field :lecturer_id %>-->
   </div>
   <div class="field">
     <%= f.label :credits %><br>

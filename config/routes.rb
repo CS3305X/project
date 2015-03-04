@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   post   'signup'   => 'users#create'
   #delete 'logout'  => 'sessions#destroy'
   
+  get 'directory' => 'users#directory'
+  
   get 'events' => 'events#index'
   
   get 'modules' => 'registered_fors#index'
@@ -36,7 +38,6 @@ Rails.application.routes.draw do
   get 'newstaff' => 'users#new'
   post 'newstaff' => 'users#new'
   get 'staff' => 'users#staff'
-
 
   resources :user_groups
 
