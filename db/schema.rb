@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 20150304140245) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "credits",         default: 0
-    t.boolean  "public_profile"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean  "public_profile"
   end
 
   add_index "users", ["user_type_id"], name: "index_users_on_user_type_id", using: :btree
