@@ -41,6 +41,8 @@ User.create(id: 18, user_type_id: 2,first_name: "Michel",last_name: "Schellekens
 # Create Admin Account
 User.create(id: 001, user_type_id: 3,first_name: "Admin",last_name: "Account", 
                           email: "admin@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
+User.create(id: 002, user_type_id: 3,first_name: "Admin",last_name: "Account", 
+                          email: "admin@umail.ucc.ie", phone_num: "353871234567", password: "teamprojectx", password_confirmation: "teamprojectx")
                           
 
 #Create First and Second Year CS Modules
