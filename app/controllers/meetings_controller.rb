@@ -2,39 +2,44 @@ class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
   before_filter :logged
   
-  # GET /meetings
-  # GET /meetings.json
+  #Fetcch all the logged in users confirmed meetings, unconfirmed meetings and 
+  #the details of the unconfirmed meetings from the relevant tables.
   def index
-    @meetings = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = true) ORDER BY start_time", session[:user_id]]
-    @unconfirmed = Attending.find_by_sql ["SELECT * FROM attendings WHERE user_id = ? AND confirmed = false", session[:user_id]]
-    @unconfirmed_details = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN (SELECT meeting_id FROM attendings WHERE user_id = ? AND confirmed = false) ORDER BY start_time", session[:user_id]]
+    @meetings = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN 
+                                          (SELECT meeting_id FROM attendings WHERE user_id = ? 
+                                            AND confirmed = true) ORDER BY start_time", session[:user_id]]
+    @unconfirmed = Attending.find_by_sql ["SELECT * FROM attendings WHERE user_id = ?
+                                            AND confirmed = false", session[:user_id]]
+    @unconfirmed_details = Meeting.find_by_sql ["SELECT * FROM meetings WHERE id IN 
+                                                (SELECT meeting_id FROM attendings WHERE user_id = ? 
+                                                AND confirmed = false) ORDER BY start_time", session[:user_id]]
   end
 
-  # GET /meetings/1
-  # GET /meetings/1.json
   def show
   end
-  
-  # GET /meetings/new
+
   def new
     @meeting = Meeting.new
-    #@algorithm_result = 1
   end
 
-  # GET /meetings/1/edit
   def edit
   end
 
-  # POST /meetings
-  # POST /meetings.json
+  #On the first call to create, params will be passes to scheduler method. 
+  #On return from scheduler method, user will chose time for meeting and
+  #meeting will be created in DB. An entry for each user invited to the meeting
+  #will be added to the attendings table, and a notification will be created
+  #for each user.
   def create
     @algorithm_result = params[:meeting][:algorithm]
     if(@algorithm_result.to_i == 1) 
       scheduler
     else
-      start_time = params[:meeting][:start_time]
+      start_time = params[:meeting][:start_time] #Get start time chosen by user.
 
-      end_time = (start_time.to_datetime + 1.hour).to_datetime
+      end_time = (start_time.to_datetime + 1.hour).to_datetime #End time is 1 hour after start_time
+      
+      #Create a new meeting.
       @meeting = Meeting.new
       @meeting.start_time = start_time
       @meeting.end_time = end_time
@@ -45,14 +50,16 @@ class MeetingsController < ApplicationController
 
       respond_to do |format|
         if @meeting.save
+          #If meeting svaes successfully create relevant attendings and notifications
           users = session[:users_for_meeting]
-      
           users.each do |user|
+            #If not the meeting organiser, set confirmed boolean to false and add notification.
             if(user != current_user.id)
               @attendings = Attending.create(user_id: user, meeting_id: @meeting.id, confirmed: false)
-              notification_message = "#{@meeting.organiser_name} has invited you to #{@meeting.description} on #{@meeting.start_time.strftime("%A, %e %B at %k:%M")} in #{@meeting.location}"
+              notification_message = "#{@meeting.organiser_name} has invited you to #{@meeting.description} 
+                                          on #{@meeting.start_time.strftime("%A, %e %B at %k:%M")} in #{@meeting.location}"
               @notifications = Notification.create(user_id: user, message: notification_message)
-            else
+            else #Is organiser, so set confirmed to true and don't send notification.
               @attendings = Attending.create(user_id: user, meeting_id: @meeting.id, confirmed: true)
             end
           end
@@ -91,6 +98,8 @@ class MeetingsController < ApplicationController
     end
   end
 
+  #Calls the scheduling algorithm, on a set of users and on a given date.
+  #Returns a page allowing user to select a time for a meeting.
   def scheduler
     @algorithm_result = 0
     session[:results] = find_free_slots(params[:meeting][:users], params[:meeting][:day])
@@ -101,14 +110,28 @@ class MeetingsController < ApplicationController
     render :scheduler
   end
 
+  #Algorithm to find time slots where all users inputted are free to meet.
+  #All meetings are of 1 hour duration so user must be free for the full hour
+  #to be classified as being available.
+  #User's personal events, classes and meetings will be considered.
+  #Returns an array of time slots which suit all users.
   def find_free_slots(users_string, meeting_start_date)
+    #Split the incoming array of user ID into an array.
     users = users_string.split(",")
+    #Add the ID of the logged in user to the end of the array.
     users << session[:user_id]
     session[:users_for_meeting] = users
     @invited_users = users
+    
+    #Create an empty array to store the free slots.
     free_slots_array = []
+    
+    #Set up an array of binary numbers, representing times between 9:00 and 18:00
+    #Assume all users are free, so assign 1 to each slot, 0 means 1 or more user is 
+    #not available to meet in that slot.
     slots_which_suit_all = [1,1,1,1,1,1,1,1,1]
-    user_num = 0
+    
+    user_num = 0 #Used as a counter to fill free_slot_array, 1 entry of array for each user
       
     users.each do |user|
       free_slots_array[user_num] = []
@@ -127,13 +150,15 @@ class MeetingsController < ApplicationController
       end
       user_num += 1
     end
-      
+    
+    #Combine all users free slots together using the & operator.
     free_slots_array.each do |free_slots|
       for j in 0..8
         slots_which_suit_all[j] &= free_slots[j]
       end
     end
-      
+    
+    #Convert array of bits showing free/busy into corresponding array of DateTimes  
     suitable_times = []
     index = 0
     
@@ -146,7 +171,8 @@ class MeetingsController < ApplicationController
 
     return suitable_times
   end
-    
+   
+  #Checks the users events, meetings and classes to see if they are available at the given time. 
   def is_available(user, date, hour)
     personal_starts = Event.where("DATE(start) = ?", date.to_date).
                                  where("HOUR(start) = ?", hour).
@@ -171,10 +197,10 @@ class MeetingsController < ApplicationController
                                       AND HOUR(start_time) = ?)", user, date.to_date, hour]
                                       
                                       
-      
+    #If all resulting arrays are empty, then user is free.  
     if(personal_starts.blank? && personal_middle.blank? && personal_ends.blank? && classes.blank? && meetings.blank?)
       return true
-    else
+    else # 1 or more of the arrays contains a result, therefore user is not free
       return false
     end
   end
